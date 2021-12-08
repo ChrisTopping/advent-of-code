@@ -13,13 +13,13 @@ import java.util.stream.Stream;
 @RequiredArgsConstructor
 public class Solver {
 
-    public Result<?> solveAll(final Solution<?> solution) {
+    public <T> Result<T> solveAll(final Solution<T> solution) {
         AdventOfCodeSolutionResolver.SolutionInfo solutionInfo = AdventOfCodeSolutionResolver.resolve(solution);
         Stream<String> inputStream = InputRetriever.retrieveInputStream(solutionInfo.getYear(), solutionInfo.getDay(), getClass());
 
         LocalDateTime start = LocalDateTime.now();
 
-        Object resultValue = solution.solve(inputStream);
+        T resultValue = solution.solve(inputStream);
 
         LocalDateTime finish = LocalDateTime.now();
         Duration duration = Duration.between(start, finish);
