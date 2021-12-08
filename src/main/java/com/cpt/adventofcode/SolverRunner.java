@@ -33,19 +33,15 @@ public class SolverRunner {
         Set<Result<?>> results = filteredSolutions.stream()
                 .sorted(solutionComparator())
                 .map(SOLVER::solveAll)
-                .collect(Collectors.toSet());
-
-        results.stream()
                 .sorted(resultComparator())
-                .map(Result::getPrintString)
-                .forEach(System.out::println);
+                .peek(result -> System.out.println(result.getPrintString()))
+                .collect(Collectors.toSet());
 
         Duration totalDuration = results.stream()
                 .map(Result::getDuration)
                 .reduce(Duration::plus)
                 .orElse(Duration.ZERO);
-
-
+        
         System.out.printf("%nTotal duration: %s seconds.%n", FORMATTER.format(totalDuration.addTo(LocalDateTime.MIN)));
     }
 
@@ -134,6 +130,5 @@ public class SolverRunner {
     private static int getYear(Solution<?> solution) {
         return AdventOfCodeSolutionResolver.resolve(solution).getYear();
     }
-
 
 }
