@@ -1,0 +1,78 @@
+plugins {
+    id 'java'
+    id 'jacoco'
+    id 'org.barfuin.gradle.jacocolog' version '1.0.1'
+    id 'application'
+}
+
+group 'com.cpt'
+version '1.0-SNAPSHOT'
+sourceCompatibility = '15'
+
+repositories {
+    mavenCentral()
+}
+
+sourceSets {
+    integrationTest {
+        java {
+            compileClasspath += main.output + test.output
+            runtimeClasspath += main.output + test.output
+            srcDir file('src/it/java')
+        }
+    }
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+    integrationTestImplementation.extendsFrom testImplementation
+    integrationTestRuntimeOnly.extendsFrom testRuntimeOnly
+}
+
+dependencies {
+    implementation group: 'org.reflections', name: 'reflections', version: '0.10.2'
+    compileOnly 'org.projectlombok:lombok:1.18.22'
+    annotationProcessor 'org.projectlombok:lombok:1.18.22'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+    testCompileOnly 'org.projectlombok:lombok:1.18.22'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+    testImplementation group: 'org.assertj', name: 'assertj-core', version: '3.21.0'
+
+}
+
+test {
+    useJUnitPlatform()
+    finalizedBy jacocoTestReport
+}
+
+task integrationTest(type: Test) {
+    useJUnitPlatform()
+    description = 'Run integration tests.'
+    check.dependsOn(integrationTest)
+    group = 'verification'
+    testClassesDirs = sourceSets.integrationTest.output.classesDirs
+    classpath = sourceSets.integrationTest.runtimeClasspath
+    shouldRunAfter test
+}
+
+check.dependsOn integrationTest
+
+jacoco {
+    toolVersion = "0.8.7"
+}
+
+jacocoTestReport {
+    dependsOn test
+    reports {
+        xml.required = true
+        csv.required = false
+        html.outputLocation = layout.buildDirectory.dir('jacoco')
+    }
+}
+
+application {
+    mainClass = 'com.cpt.adventofcode.SolverRunner'
+    description = 'Advent of Code Solver'
+}
