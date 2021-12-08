@@ -22,33 +22,6 @@ public class Arguments {
         return Optional.ofNullable(argumentMap.get(argumentType));
     }
 
-    private static class Argument {
-        @Getter
-        private final ArgumentType argumentType;
-        @Getter
-        private List<String> values;
-
-        public Argument(String argumentString) {
-            String[] equalsSplit = argumentString.split("=");
-
-
-            if (equalsSplit.length != 2) {
-                System.out.println("Cannot parse argument: " + argumentString);
-                System.exit(1);
-            }
-
-            argumentType = ArgumentType.of(equalsSplit[0]);
-
-            try {
-                String[] commaSplit = equalsSplit[1].split(",");
-                values = Arrays.stream(commaSplit).collect(Collectors.toList());
-            } catch (NumberFormatException e) {
-                System.out.println("Cannot parse argument type: " + argumentString);
-                System.exit(1);
-            }
-        }
-    }
-
     public enum ArgumentType {
         YEAR,
         DAY,
@@ -64,6 +37,32 @@ public class Arguments {
                 System.out.println("Cannot parse argument type: " + argumentTypeString);
                 System.exit(1);
                 return null;
+            }
+        }
+    }
+
+    private static class Argument {
+        @Getter
+        private final ArgumentType argumentType;
+        @Getter
+        private List<String> values;
+
+        public Argument(String argumentString) {
+            String[] equalsSplit = argumentString.split("=");
+
+            if (equalsSplit.length != 2) {
+                System.out.println("Cannot parse argument: " + argumentString);
+                System.exit(1);
+            }
+
+            argumentType = ArgumentType.of(equalsSplit[0]);
+
+            try {
+                String[] commaSplit = equalsSplit[1].split(",");
+                values = Arrays.stream(commaSplit).collect(Collectors.toList());
+            } catch (NumberFormatException e) {
+                System.out.println("Cannot parse argument type: " + argumentString);
+                System.exit(1);
             }
         }
     }
