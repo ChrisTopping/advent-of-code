@@ -14,6 +14,7 @@ import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class SolverRunner {
@@ -58,33 +59,50 @@ public class SolverRunner {
                     } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
                         throw new RuntimeException("Unable to instantiate class");
                     }
-                })
-                .collect(Collectors.toList());
+                }).collect(Collectors.toList());
     }
 
     private static List<Solution<?>> filterSolutions(List<Solution<?>> solutions, Arguments arguments) {
         Optional<List<String>> latest = arguments.get(Arguments.ArgumentType.LATEST);
 
-        List<Solution<?>> filteredSolutions = solutions.stream()
-                .filter(solution -> {
-                    Optional<List<String>> year = arguments.get(Arguments.ArgumentType.YEAR);
-                    return year.isEmpty() || year.get().contains(String.valueOf(getYear(solution)));
-                }).filter(solution -> {
-                    Optional<List<String>> day = arguments.get(Arguments.ArgumentType.DAY);
-                    return day.isEmpty() || day.get().contains(String.valueOf(getDay(solution)));
-                }).filter(solution -> {
-                    Optional<List<String>> part = arguments.get(Arguments.ArgumentType.PART);
-                    return part.isEmpty() || part.get().contains(String.valueOf(getPart(solution)));
-                }).filter(solution -> {
-                    Optional<List<String>> part = arguments.get(Arguments.ArgumentType.TAGS);
-                    return part.isEmpty() || part.get().stream()
-                            .anyMatch(s -> Arrays.stream(getTags(solution))
-                                    .collect(Collectors.toList()).contains(s));
-                }).sorted(solutionComparator().reversed())
+        return solutions.stream()
+                .filter(yearFilter(arguments))
+                .filter(dayFilter(arguments))
+                .filter(partFilter(arguments))
+                .filter(tagsFilter(arguments))
+                .sorted(solutionComparator().reversed())
                 .limit(latest.map(strings -> Long.parseLong(strings.get(0))).orElse(Long.MAX_VALUE))
                 .collect(Collectors.toList());
+    }
 
-        return filteredSolutions;
+    private static Predicate<Solution<?>> yearFilter(Arguments arguments) {
+        return solution -> {
+            Optional<List<String>> year = arguments.get(Arguments.ArgumentType.YEAR);
+            return year.isEmpty() || year.get().contains(String.valueOf(getYear(solution)));
+        };
+    }
+
+    private static Predicate<Solution<?>> dayFilter(Arguments arguments) {
+        return solution -> {
+            Optional<List<String>> day = arguments.get(Arguments.ArgumentType.DAY);
+            return day.isEmpty() || day.get().contains(String.valueOf(getDay(solution)));
+        };
+    }
+
+    private static Predicate<Solution<?>> partFilter(Arguments arguments) {
+        return solution -> {
+            Optional<List<String>> part = arguments.get(Arguments.ArgumentType.PART);
+            return part.isEmpty() || part.get().contains(String.valueOf(getPart(solution)));
+        };
+    }
+
+    private static Predicate<Solution<?>> tagsFilter(Arguments arguments) {
+        return solution -> {
+            Optional<List<String>> part = arguments.get(Arguments.ArgumentType.TAGS);
+            return part.isEmpty() || part.get().stream()
+                    .anyMatch(s -> Arrays.stream(getTags(solution))
+                            .collect(Collectors.toList()).contains(s));
+        };
     }
 
     private static Comparator<Solution<?>> solutionComparator() {
