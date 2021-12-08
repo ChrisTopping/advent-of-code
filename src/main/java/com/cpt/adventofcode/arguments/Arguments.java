@@ -15,7 +15,7 @@ public class Arguments {
     public Arguments(String[] args) {
         argumentMap = Arrays.stream(args)
                 .map(Argument::new)
-                .collect(Collectors.toMap(Argument::getArgumentType, Argument::getValues));
+                .collect(Collectors.toMap(Argument::getArgumentType, Argument::getValues, (first, second) -> first));
     }
 
     public Optional<List<String>> get(ArgumentType argumentType) {
