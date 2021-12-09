@@ -8,21 +8,21 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-public class Arguments {
+public class SolverArguments {
 
-    private final Map<ArgumentType, List<String>> argumentMap;
+    private final Map<SolverArgumentType, List<String>> argumentMap;
 
-    public Arguments(String[] args) {
+    public SolverArguments(String[] args) {
         argumentMap = Arrays.stream(args)
-                .map(Argument::new)
-                .collect(Collectors.toMap(Argument::getArgumentType, Argument::getValues, (first, second) -> first));
+                .map(SolverArgument::new)
+                .collect(Collectors.toMap(SolverArgument::getSolverArgumentType, SolverArgument::getValues, (first, second) -> first));
     }
 
-    public Optional<List<String>> get(ArgumentType argumentType) {
-        return Optional.ofNullable(argumentMap.get(argumentType));
+    public Optional<List<String>> get(SolverArgumentType solverArgumentType) {
+        return Optional.ofNullable(argumentMap.get(solverArgumentType));
     }
 
-    public enum ArgumentType {
+    public enum SolverArgumentType {
         YEAR,
         DAY,
         PART,
@@ -30,7 +30,7 @@ public class Arguments {
         LATEST,
         ;
 
-        public static ArgumentType of(String argumentTypeString) {
+        public static SolverArgumentType of(String argumentTypeString) {
             try {
                 return valueOf(argumentTypeString.toUpperCase());
             } catch (IllegalArgumentException e) {
@@ -41,13 +41,13 @@ public class Arguments {
         }
     }
 
-    private static class Argument {
+    private static class SolverArgument {
         @Getter
-        private final ArgumentType argumentType;
+        private final SolverArgumentType solverArgumentType;
         @Getter
         private List<String> values;
 
-        public Argument(String argumentString) {
+        public SolverArgument(String argumentString) {
             String[] equalsSplit = argumentString.split("=");
 
             if (equalsSplit.length != 2) {
@@ -55,7 +55,7 @@ public class Arguments {
                 System.exit(1);
             }
 
-            argumentType = ArgumentType.of(equalsSplit[0]);
+            solverArgumentType = SolverArgumentType.of(equalsSplit[0]);
 
             try {
                 String[] commaSplit = equalsSplit[1].split(",");

@@ -2,7 +2,7 @@ package com.cpt.adventofcode;
 
 import com.cpt.adventofcode.annotations.AdventOfCodeSolution;
 import com.cpt.adventofcode.annotations.AdventOfCodeSolutionResolver;
-import com.cpt.adventofcode.arguments.Arguments;
+import com.cpt.adventofcode.arguments.SolverArguments;
 import com.cpt.adventofcode.result.Result;
 import com.cpt.adventofcode.solution.Solution;
 import com.cpt.adventofcode.solver.Solver;
@@ -23,10 +23,10 @@ public class SolverRunner {
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("s.SSS");
 
     public static void main(String[] args) {
-        Arguments arguments = new Arguments(args);
+        SolverArguments solverArguments = new SolverArguments(args);
 
         List<Solution<?>> solutions = findAllSolutions();
-        List<Solution<?>> filteredSolutions = filterSolutions(solutions, arguments);
+        List<Solution<?>> filteredSolutions = filterSolutions(solutions, solverArguments);
 
         System.out.println(MessageFormat.format("Solving {0} solutions:\n", filteredSolutions.size()));
 
@@ -41,7 +41,7 @@ public class SolverRunner {
                 .map(Result::getDuration)
                 .reduce(Duration::plus)
                 .orElse(Duration.ZERO);
-        
+
         System.out.printf("%nTotal duration: %s seconds.%n", FORMATTER.format(totalDuration.addTo(LocalDateTime.MIN)));
     }
 
@@ -58,43 +58,43 @@ public class SolverRunner {
                 }).collect(Collectors.toList());
     }
 
-    private static List<Solution<?>> filterSolutions(List<Solution<?>> solutions, Arguments arguments) {
-        Optional<List<String>> latest = arguments.get(Arguments.ArgumentType.LATEST);
+    private static List<Solution<?>> filterSolutions(List<Solution<?>> solutions, SolverArguments solverArguments) {
+        Optional<List<String>> latest = solverArguments.get(SolverArguments.SolverArgumentType.LATEST);
 
         return solutions.stream()
-                .filter(yearFilter(arguments))
-                .filter(dayFilter(arguments))
-                .filter(partFilter(arguments))
-                .filter(tagsFilter(arguments))
+                .filter(yearFilter(solverArguments))
+                .filter(dayFilter(solverArguments))
+                .filter(partFilter(solverArguments))
+                .filter(tagsFilter(solverArguments))
                 .sorted(solutionComparator().reversed())
                 .limit(latest.map(strings -> Long.parseLong(strings.get(0))).orElse(Long.MAX_VALUE))
                 .collect(Collectors.toList());
     }
 
-    private static Predicate<Solution<?>> yearFilter(Arguments arguments) {
+    private static Predicate<Solution<?>> yearFilter(SolverArguments solverArguments) {
         return solution -> {
-            Optional<List<String>> year = arguments.get(Arguments.ArgumentType.YEAR);
+            Optional<List<String>> year = solverArguments.get(SolverArguments.SolverArgumentType.YEAR);
             return year.isEmpty() || year.get().contains(String.valueOf(getYear(solution)));
         };
     }
 
-    private static Predicate<Solution<?>> dayFilter(Arguments arguments) {
+    private static Predicate<Solution<?>> dayFilter(SolverArguments solverArguments) {
         return solution -> {
-            Optional<List<String>> day = arguments.get(Arguments.ArgumentType.DAY);
+            Optional<List<String>> day = solverArguments.get(SolverArguments.SolverArgumentType.DAY);
             return day.isEmpty() || day.get().contains(String.valueOf(getDay(solution)));
         };
     }
 
-    private static Predicate<Solution<?>> partFilter(Arguments arguments) {
+    private static Predicate<Solution<?>> partFilter(SolverArguments solverArguments) {
         return solution -> {
-            Optional<List<String>> part = arguments.get(Arguments.ArgumentType.PART);
+            Optional<List<String>> part = solverArguments.get(SolverArguments.SolverArgumentType.PART);
             return part.isEmpty() || part.get().contains(String.valueOf(getPart(solution)));
         };
     }
 
-    private static Predicate<Solution<?>> tagsFilter(Arguments arguments) {
+    private static Predicate<Solution<?>> tagsFilter(SolverArguments solverArguments) {
         return solution -> {
-            Optional<List<String>> part = arguments.get(Arguments.ArgumentType.TAGS);
+            Optional<List<String>> part = solverArguments.get(SolverArguments.SolverArgumentType.TAGS);
             return part.isEmpty() || part.get().stream()
                     .anyMatch(s -> Arrays.stream(getTags(solution))
                             .collect(Collectors.toList()).contains(s));
