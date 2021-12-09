@@ -30,7 +30,7 @@ Use the following command to run all solutions:
 ./gradlew run
 ```
 
-To run a selection of solutions, use the following arguments:
+To run a selection of solutions, use the following solverArguments:
 
 * `year` - filter solutions by year
 * `day` - filter solutions by day
