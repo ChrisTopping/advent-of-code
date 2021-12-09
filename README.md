@@ -46,7 +46,15 @@ E.g:
 
 ## Adding solutions
 
-To add a solution, implement the `Solution<T>` interface and annotate it with the `@AdventOfCodeSolution` annotation:
+Use the following command to automatically generate a solution template:
+
+```shell
+./gradlew generate
+```
+
+Then enter the data when prompted.
+
+To manually add a solution, implement the `Solution<T>` interface and annotate it with the `@AdventOfCodeSolution` annotation:
 
 ```java
 @AdventOfCode(year = 2015, day = 1, part = 1, description = "Let It Snow")
