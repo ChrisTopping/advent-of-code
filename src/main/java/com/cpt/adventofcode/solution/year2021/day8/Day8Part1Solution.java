@@ -22,8 +22,8 @@ public class Day8Part1Solution implements Solution<Long> {
                 .map(s -> s.split(" "))
                 .flatMap(Stream::of)
                 .map(s -> s.split(""))
-                .map(strings -> Arrays.stream(strings).collect(Collectors.toList()))
-                .filter(strings -> Day8Part1Solution.uniques.contains(strings.size()))
+                .map(s -> s.length)
+                .filter(Day8Part1Solution.uniques::contains)
                 .count();
     }
 }
