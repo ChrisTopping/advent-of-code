@@ -25,6 +25,7 @@ public class Generator {
 
             createSolutionFile(year, day, part, solutionContent);
             createTestFile(year, day, part, solutionTestContent);
+            createIntegrationTestFile(year, day, part, solutionTestContent);
             createInput(year, day, arguments.get(INPUT));
             createTestInput(year, day, arguments.get(TEST_INPUT));
         } catch (IOException e) {
@@ -57,6 +58,12 @@ public class Generator {
 
     private void createTestFile(int year, int day, int part, String content) throws IOException {
         Path directoryPath = getRelativePath("src", "test", "java", "com", "cpt", "adventofcode", "solution", "year" + year, "day" + day);
+        Path filePath = Paths.get(directoryPath.toString(), "Day" + day + "Part" + part + "SolutionTest.java");
+        createFile(content, filePath);
+    }
+
+    private void createIntegrationTestFile(int year, int day, int part, String content) throws IOException {
+        Path directoryPath = getRelativePath("src", "integrationTest", "java", "com", "cpt", "adventofcode", "solution", "year" + year, "day" + day);
         Path filePath = Paths.get(directoryPath.toString(), "Day" + day + "Part" + part + "SolutionTest.java");
         createFile(content, filePath);
     }
