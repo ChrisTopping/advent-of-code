@@ -11,7 +11,11 @@ import java.util.stream.Stream;
 import static java.util.Arrays.asList;
 import static java.util.Arrays.stream;
 
-@AdventOfCodeSolution(year = 2021, day = 8, part = 2, description = "Seven Segment Search", link = "https://adventofcode.com/2021/day/8")
+@AdventOfCodeSolution(
+        year = 2021, day = 8, part = 2,
+        description = "Seven Segment Search",
+        tags = "alternative",
+        link = "https://adventofcode.com/2021/day/8")
 public class Day8Part2Solution implements Solution<Long> {
 
     @Override

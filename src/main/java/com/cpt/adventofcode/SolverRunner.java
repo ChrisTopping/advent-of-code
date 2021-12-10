@@ -96,9 +96,14 @@ public class SolverRunner {
         return solution -> {
             Optional<List<String>> part = solverArguments.get(SolverArguments.SolverArgumentType.TAGS);
             return part.isEmpty() || part.get().stream()
-                    .anyMatch(s -> Arrays.stream(getTags(solution))
-                            .collect(Collectors.toList()).contains(s));
+                    .anyMatch(s -> containsFilterWithInversion(getTags(solution)).test(s));
         };
+    }
+
+    private static Predicate<String> containsFilterWithInversion(String[] values) {
+        return string -> string.startsWith("!") != Arrays.stream(values)
+                .collect(Collectors.toList())
+                .contains(string.replace("!", ""));
     }
 
     private static Comparator<Solution<?>> solutionComparator() {

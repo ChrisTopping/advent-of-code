@@ -10,7 +10,11 @@ import java.util.stream.Stream;
 
 import static java.util.Arrays.asList;
 
-@AdventOfCodeSolution(year = 2021, day = 8, part = 1, description = "Seven Segment Search", link = "https://adventofcode.com/2021/day/8")
+@AdventOfCodeSolution(
+        year = 2021, day = 8, part = 1,
+        description = "Seven Segment Search",
+        link = "https://adventofcode.com/2021/day/8"
+)
 public class Day8Part1Solution implements Solution<Long> {
 
     private static final List<Integer> uniques = asList(2, 4, 3, 7);
