@@ -34,7 +34,7 @@ public class GeneratorRunner {
                 line = reader.readLine();
                 builder.append("\n").append(line);
             } while (!line.equals("!q"));
-            return builder.toString();
+            return builder.toString().replace("!q", "");
         } else {
             return reader.readLine();
         }

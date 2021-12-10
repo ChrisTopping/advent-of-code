@@ -20,10 +20,6 @@ public class GeneratorArguments {
         return argumentMap.get(type);
     }
 
-    public Stream<Map.Entry<GeneratorArgumentType, String>> stream() {
-        return argumentMap.entrySet().stream();
-    }
-
     public Set<Map.Entry<GeneratorArgumentType, String>> entries() {
         return argumentMap.entrySet();
     }
@@ -48,7 +44,7 @@ public class GeneratorArguments {
         private String name;
         @Getter
         private boolean multiline;
-        
+
     }
 
 }
