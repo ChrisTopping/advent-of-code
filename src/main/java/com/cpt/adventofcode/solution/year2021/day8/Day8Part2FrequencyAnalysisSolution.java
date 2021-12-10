@@ -8,12 +8,17 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-@AdventOfCodeSolution(year = 2021, day = 8, part = 2, description = "Seven Segment Search", tags = "alternative", link = "https://adventofcode.com/2021/day/8")
-public class Day8Part2SolutionAlternative implements Solution<Long> {
+@AdventOfCodeSolution(
+        year = 2021, day = 8, part = 2,
+        description = "Seven Segment Search",
+        tags = "alternative",
+        link = "https://adventofcode.com/2021/day/8"
+)
+public class Day8Part2FrequencyAnalysisSolution implements Solution<Long> {
 
     private final HashMap<Set<Segment>, Integer> segmentIntegerMap = new HashMap<>();
 
-    public Day8Part2SolutionAlternative() {
+    public Day8Part2FrequencyAnalysisSolution() {
         segmentIntegerMap.put(Set.of(Segment.TOP, Segment.TOP_LEFT, Segment.TOP_RIGHT, Segment.BOTTOM_LEFT, Segment.BOTTOM_RIGHT, Segment.BOTTOM), 0);
         segmentIntegerMap.put(Set.of(Segment.TOP_RIGHT, Segment.BOTTOM_RIGHT), 1);
         segmentIntegerMap.put(Set.of(Segment.TOP, Segment.TOP_RIGHT, Segment.MIDDLE, Segment.BOTTOM_LEFT, Segment.BOTTOM), 2);

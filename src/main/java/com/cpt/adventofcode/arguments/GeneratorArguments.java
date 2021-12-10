@@ -48,16 +48,7 @@ public class GeneratorArguments {
         private String name;
         @Getter
         private boolean multiline;
-
-//        public static GeneratorArgumentType of(String argumentTypeString) {
-//            try {
-//                return valueOf(argumentTypeString.toUpperCase());
-//            } catch (IllegalArgumentException e) {
-//                System.out.println("Cannot parse argument type: " + argumentTypeString);
-//                System.exit(1);
-//                return null;
-//            }
-//        }
+        
     }
 
 }
