@@ -56,7 +56,7 @@ public class Result<T> {
                 "Part",
                 "Name",
                 "Result",
-                "Duration (ms)"
+                "Duration (s)"
         );
     }
 }
