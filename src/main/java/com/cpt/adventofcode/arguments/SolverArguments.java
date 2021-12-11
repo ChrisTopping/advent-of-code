@@ -28,6 +28,8 @@ public class SolverArguments {
         PART,
         TAGS,
         LATEST,
+        VERBOSE,
+        AVERAGE,
         ;
 
         public static SolverArgumentType of(String argumentTypeString) {

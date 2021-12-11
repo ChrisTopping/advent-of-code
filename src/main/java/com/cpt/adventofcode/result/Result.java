@@ -1,25 +1,31 @@
 package com.cpt.adventofcode.result;
 
 import com.cpt.adventofcode.annotations.AdventOfCodeSolutionResolver;
+import com.diogonunes.jcolor.AnsiFormat;
+import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+import static com.diogonunes.jcolor.Ansi.colorize;
+
 @Data
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class Result<T> {
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("s.SSS");
-    private static final String PRINT_FORMAT = "Year %d Day %d Part %d:\n    Name: %s\n    Link: %s\n    Tags: %s\n    Solution: %s\n    Duration: %s seconds";
+    private static final String VERBOSE_PRINT_STRING = "Year %d Day %d Part %d:\n    Name: %s\n    Link: %s\n    Tags: %s\n    Solution: %s\n    Duration: %s seconds";
+    private static final String LACONIC_PRINT_STRING = "%-4d-%-2d %d %-45s %-15s (%s seconds)";
 
     private final T value;
-    private final Duration duration;
     private final AdventOfCodeSolutionResolver.SolutionInfo solutionInfo;
+    @Setter
+    private Duration duration;
 
-    public String getPrintString() {
-        return String.format(PRINT_FORMAT,
+    public String getVerbosePrintString() {
+        return String.format(VERBOSE_PRINT_STRING,
                 solutionInfo.getYear(),
                 solutionInfo.getDay(),
                 solutionInfo.getPart(),
@@ -28,6 +34,17 @@ public class Result<T> {
                 "[" + String.join(", ", solutionInfo.getTags()) + "]",
                 value,
                 FORMATTER.format(duration.addTo(LocalDateTime.MIN))
+        );
+    }
+
+    public String getLaconicPrintString(AnsiFormat format) {
+        return String.format(LACONIC_PRINT_STRING,
+                solutionInfo.getYear(),
+                solutionInfo.getDay(),
+                solutionInfo.getPart(),
+                "(" + solutionInfo.getDescription() + "):",
+                value,
+                colorize(FORMATTER.format(duration.addTo(LocalDateTime.MIN)), format)
         );
     }
 }

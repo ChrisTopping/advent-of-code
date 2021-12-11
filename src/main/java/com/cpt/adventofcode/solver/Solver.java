@@ -24,6 +24,6 @@ public class Solver {
         LocalDateTime finish = LocalDateTime.now();
         Duration duration = Duration.between(start, finish);
 
-        return new Result<>(resultValue, duration, solutionInfo);
+        return new Result<>(resultValue, solutionInfo, duration);
     }
 }

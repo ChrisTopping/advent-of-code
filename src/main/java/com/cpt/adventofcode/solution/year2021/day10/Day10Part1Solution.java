@@ -18,7 +18,6 @@ public class Day10Part1Solution implements Solution<Long> {
 
     @Override
     public Long solve(Stream<String> inputStream) {
-        System.out.println("");
         return inputStream.map(this::toCharacterStrings)
                 .mapToLong(this::solve)
                 .sum();

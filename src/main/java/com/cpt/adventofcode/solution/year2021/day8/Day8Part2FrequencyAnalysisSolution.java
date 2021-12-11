@@ -10,7 +10,7 @@ import java.util.stream.Stream;
 
 @AdventOfCodeSolution(
         year = 2021, day = 8, part = 2,
-        description = "Seven Segment Search",
+        description = "Seven Segment Search - Frequency",
         tags = "alternative",
         link = "https://adventofcode.com/2021/day/8"
 )

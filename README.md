@@ -37,11 +37,20 @@ To run a selection of solutions, use the following solverArguments:
 * `part` - filter solutions by part
 * `tag` - filter solutions by tag
 * `latest` - filter latest N solutions
+* `verbose` - adds verbose logging
+* `average` - averages the run duration across a given number of iterations
 
 E.g:
 
 ```shell
-./gradlew run --args="year=2020,2021 day=1,2,3 part=2, tags=O(n),algebra latest=2"
+./gradlew run --args="year=2020,2021 day=1,2,3 part=2, tags=O(n),algebra latest=2 verbose=true average=100"
+```
+
+Tags can be negated using the `!` character, e.g. the following will run all solutions which do not contain
+the `alternative` tag:
+
+```shell
+./gradlew run --args="tags=!alternative"
 ```
 
 ## Adding solutions
@@ -54,9 +63,11 @@ Use the following command to automatically generate a solution template:
 
 Then enter the data when prompted.
 
-To manually add a solution, implement the `Solution<T>` interface and annotate it with the `@AdventOfCodeSolution` annotation:
+To manually add a solution, implement the `Solution<T>` interface and annotate it with the `@AdventOfCodeSolution`
+annotation:
 
 ```java
+
 @AdventOfCode(year = 2015, day = 1, part = 1, description = "Let It Snow")
 public class Day1Part1Solution implements Solution<Integer> {
 
@@ -69,13 +80,15 @@ public class Day1Part1Solution implements Solution<Integer> {
 
 Add the problem data to a file with the format `/year{year}/day{day}.txt` in the main `/resources` directory.
 
-A problem can have multiple implemented solutions. 
+A problem can have multiple implemented solutions.
 
-A test can be created using the test data given during the problem, along with the given expected result for that data. 
+A test can be created using the test data given during the problem, along with the given expected result for that data.
 
 To do so:
+
 1. Add the test data to a file with the format `/year{year}/day{day}.txt` in the test `/resources` directory.
 3. Extend `BaseTest<T>`.
 4. Call the `assertSolutionIsCorrect(solution, expected)` to verify the solution returns the expected result.
 
-Integration tests are used to verify that the final result accepted by Advent of Code is returned by the given solution. These are written in the same way as the unit tests, but use problem data from the main `/resources` directory. 
+Integration tests are used to verify that the final result accepted by Advent of Code is returned by the given solution.
+These are written in the same way as the unit tests, but use problem data from the main `/resources` directory. 
