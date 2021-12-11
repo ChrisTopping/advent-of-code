@@ -31,6 +31,7 @@ public class SolverRunner {
 
         List<Result<?>> results = solveSolutions(solutions, getAveragingIterations(solverArguments), isFastest(solverArguments));
 
+        if (!isVerbose(solverArguments)) System.out.println(Result.getLaconicHeaders());
         results.forEach(result -> printResult(isVerbose(solverArguments), getMaxDuration(results), result));
 
         Duration totalDuration = getTotalDuration(results);
