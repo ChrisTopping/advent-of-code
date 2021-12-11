@@ -21,7 +21,9 @@ import static java.util.Arrays.asList;
 public class Day8Part2FrequencyDensityAnalysisSolution implements Solution<Long> {
 
     private static final List<Long> FREQUENCY_DENSITIES = asList(42L, 17L, 34L, 39L, 30L, 37L, 41L, 25L, 49L, 45L);
-    private static final Map<Long, Integer> FREQUENCY_DENSITY_MAP = IntStream.range(0, 10).boxed().collect(Collectors.toMap(FREQUENCY_DENSITIES::get, Function.identity()));
+    private static final Map<Long, Integer> FREQUENCY_DENSITY_MAP = IntStream.range(0, 10)
+            .boxed()
+            .collect(Collectors.toMap(FREQUENCY_DENSITIES::get, Function.identity()));
 
     @Override
     public Long solve(Stream<String> inputStream) {
