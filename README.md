@@ -68,7 +68,7 @@ annotation:
 
 ```java
 
-@AdventOfCode(year = 2015, day = 1, part = 1, description = "Let It Snow")
+@AdventOfCodeSolution(year = 2015, day = 1, part = 1, description = "Let It Snow")
 public class Day1Part1Solution implements Solution<Integer> {
 
     @Override
