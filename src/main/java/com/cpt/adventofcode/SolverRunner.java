@@ -1,21 +1,25 @@
 package com.cpt.adventofcode;
 
-import com.cpt.adventofcode.annotations.AdventOfCodeSolution;
-import com.cpt.adventofcode.annotations.AdventOfCodeSolutionResolver;
+import com.cpt.adventofcode.annotations.AdventOfCodeSolutionResolver.SolutionInfo;
 import com.cpt.adventofcode.arguments.SolverArguments;
 import com.cpt.adventofcode.result.Result;
 import com.cpt.adventofcode.solution.Solution;
+import com.cpt.adventofcode.solver.SolutionRetriever;
 import com.cpt.adventofcode.solver.Solver;
-import org.reflections.Reflections;
+import com.diogonunes.jcolor.AnsiFormat;
 
-import java.lang.reflect.InvocationTargetException;
 import java.text.MessageFormat;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.*;
-import java.util.function.Predicate;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
 import java.util.stream.Collectors;
+
+import static com.cpt.adventofcode.arguments.SolverArguments.SolverArgumentType.AVERAGE;
+import static com.cpt.adventofcode.arguments.SolverArguments.SolverArgumentType.VERBOSE;
+import static com.diogonunes.jcolor.Attribute.TEXT_COLOR;
 
 public class SolverRunner {
 
@@ -25,115 +29,82 @@ public class SolverRunner {
     public static void main(String[] args) {
         SolverArguments solverArguments = new SolverArguments(args);
 
-        List<Solution<?>> solutions = findAllSolutions();
-        List<Solution<?>> filteredSolutions = filterSolutions(solutions, solverArguments);
+        List<Solution<?>> solutions = new SolutionRetriever().retrieveSolutions(solverArguments);
+        System.out.println(MessageFormat.format("Solving {0} solutions:", solutions.size()));
 
-        System.out.println(MessageFormat.format("Solving {0} solutions:\n", filteredSolutions.size()));
+        List<Result<?>> results = solveSolutions(solutions, getAveragingIterations(solverArguments));
 
-        Set<Result<?>> results = filteredSolutions.stream()
-                .sorted(solutionComparator())
-                .map(SOLVER::solveAll)
-                .sorted(resultComparator())
-                .peek(result -> System.out.println(result.getPrintString()))
-                .collect(Collectors.toSet());
+        results.forEach(result -> printResult(isVerbose(solverArguments), getMaxDuration(results), result));
 
-        Duration totalDuration = results.stream()
-                .map(Result::getDuration)
-                .reduce(Duration::plus)
-                .orElse(Duration.ZERO);
-
+        Duration totalDuration = getTotalDuration(results);
         System.out.printf("%nTotal duration: %s seconds.%n", FORMATTER.format(totalDuration.addTo(LocalDateTime.MIN)));
     }
 
-    private static List<Solution<?>> findAllSolutions() {
-        Set<Class<?>> solutionClasses = new Reflections("com.cpt.adventofcode.solution").getTypesAnnotatedWith(AdventOfCodeSolution.class);
-        return solutionClasses.stream()
-                .filter(Solution.class::isAssignableFrom)
-                .map(aClass -> {
-                    try {
-                        return (Solution<?>) aClass.getDeclaredConstructor().newInstance();
-                    } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
-                        throw new RuntimeException("Unable to instantiate class");
-                    }
-                }).collect(Collectors.toList());
+    private static Integer getAveragingIterations(SolverArguments solverArguments) {
+        return solverArguments.get(AVERAGE)
+                .map(strings -> strings.get(0))
+                .map(Integer::parseInt)
+                .orElse(1);
     }
 
-    private static List<Solution<?>> filterSolutions(List<Solution<?>> solutions, SolverArguments solverArguments) {
-        Optional<List<String>> latest = solverArguments.get(SolverArguments.SolverArgumentType.LATEST);
-
-        return solutions.stream()
-                .filter(yearFilter(solverArguments))
-                .filter(dayFilter(solverArguments))
-                .filter(partFilter(solverArguments))
-                .filter(tagsFilter(solverArguments))
-                .sorted(solutionComparator().reversed())
-                .limit(latest.map(strings -> Long.parseLong(strings.get(0))).orElse(Long.MAX_VALUE))
+    private static List<Result<?>> solveSolutions(List<Solution<?>> filteredSolutions, Integer averagingIterations) {
+        return filteredSolutions.stream()
+                .map((Solution<?> solution) -> solveSolution(solution, averagingIterations))
+                .sorted(SolverRunner::resultComparator)
                 .collect(Collectors.toList());
     }
 
-    private static Predicate<Solution<?>> yearFilter(SolverArguments solverArguments) {
-        return solution -> {
-            Optional<List<String>> year = solverArguments.get(SolverArguments.SolverArgumentType.YEAR);
-            return year.isEmpty() || year.get().contains(String.valueOf(getYear(solution)));
-        };
+    private static long getMaxDuration(List<Result<?>> results) {
+        return results.stream()
+                .map(Result::getDuration)
+                .mapToLong(Duration::toMillis)
+                .max().orElse(0);
     }
 
-    private static Predicate<Solution<?>> dayFilter(SolverArguments solverArguments) {
-        return solution -> {
-            Optional<List<String>> day = solverArguments.get(SolverArguments.SolverArgumentType.DAY);
-            return day.isEmpty() || day.get().contains(String.valueOf(getDay(solution)));
-        };
+    private static Result<?> solveSolution(Solution<?> solution, Integer averagingIterations) {
+        List<Result<?>> solutionResults = new ArrayList<>();
+        for (int iteration = 0; iteration < averagingIterations; iteration++) {
+            solutionResults.add(SOLVER.solveAll(solution));
+        }
+
+        double averageDuration = solutionResults.stream()
+                .map(Result::getDuration)
+                .mapToLong(Duration::toMillis)
+                .filter(value -> value != 0)
+                .average()
+                .orElse(0);
+
+        Result<?> result = solutionResults.get(0);
+        result.setDuration(Duration.ofMillis((long) averageDuration));
+        return result;
     }
 
-    private static Predicate<Solution<?>> partFilter(SolverArguments solverArguments) {
-        return solution -> {
-            Optional<List<String>> part = solverArguments.get(SolverArguments.SolverArgumentType.PART);
-            return part.isEmpty() || part.get().contains(String.valueOf(getPart(solution)));
-        };
+    private static int resultComparator(Result<?> left, Result<?> right) {
+        return Comparator.comparing(SolutionInfo::getYear)
+                .thenComparing(SolutionInfo::getDay)
+                .thenComparing(SolutionInfo::getPart)
+                .compare(left.getSolutionInfo(), right.getSolutionInfo());
     }
 
-    private static Predicate<Solution<?>> tagsFilter(SolverArguments solverArguments) {
-        return solution -> {
-            Optional<List<String>> part = solverArguments.get(SolverArguments.SolverArgumentType.TAGS);
-            return part.isEmpty() || part.get().stream()
-                    .anyMatch(s -> containsFilterWithInversion(getTags(solution)).test(s));
-        };
+    private static Boolean isVerbose(SolverArguments solverArguments) {
+        return solverArguments.get(VERBOSE)
+                .map(strings -> strings.get(0))
+                .map(Boolean::parseBoolean)
+                .orElse(false);
     }
 
-    private static Predicate<String> containsFilterWithInversion(String[] values) {
-        return string -> string.startsWith("!") != Arrays.stream(values)
-                .collect(Collectors.toList())
-                .contains(string.replace("!", ""));
+    private static void printResult(Boolean verbose, long maxDuration, Result<?> result) {
+        double relativeDuration = 1.0 * result.getDuration().toMillis() / maxDuration;
+        int red = (int) (255 * relativeDuration);
+        int green = (int) (255 * (1 - relativeDuration));
+        System.out.println(verbose ? result.getVerbosePrintString() : result.getLaconicPrintString(new AnsiFormat(TEXT_COLOR(red, green, 0))));
     }
 
-    private static Comparator<Solution<?>> solutionComparator() {
-        return Comparator
-                .comparing(SolverRunner::getYear)
-                .thenComparing(SolverRunner::getDay)
-                .thenComparing(SolverRunner::getPart);
-    }
-
-    private static Comparator<Result<?>> resultComparator() {
-        return Comparator.comparingInt(result -> {
-            AdventOfCodeSolutionResolver.SolutionInfo solutionInfo = result.getSolutionInfo();
-            return solutionInfo.getYear() * 4 + solutionInfo.getDay() * 2 + solutionInfo.getPart();
-        });
-    }
-
-    private static String[] getTags(Solution<?> solution) {
-        return AdventOfCodeSolutionResolver.resolve(solution).getTags();
-    }
-
-    private static int getPart(Solution<?> solution) {
-        return AdventOfCodeSolutionResolver.resolve(solution).getPart();
-    }
-
-    private static int getDay(Solution<?> solution) {
-        return AdventOfCodeSolutionResolver.resolve(solution).getDay();
-    }
-
-    private static int getYear(Solution<?> solution) {
-        return AdventOfCodeSolutionResolver.resolve(solution).getYear();
+    private static Duration getTotalDuration(List<Result<?>> results) {
+        return results.stream()
+                .map(Result::getDuration)
+                .reduce(Duration::plus)
+                .orElse(Duration.ZERO);
     }
 
 }

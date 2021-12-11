@@ -15,7 +15,7 @@ import static java.util.Arrays.asList;
 
 @AdventOfCodeSolution(
         year = 2021, day = 8, part = 2,
-        description = "Seven Segment Search",
+        description = "Seven Segment Search - Frequency Density",
         link = "https://adventofcode.com/2021/day/8"
 )
 public class Day8Part2FrequencyDensityAnalysisSolution implements Solution<Long> {
