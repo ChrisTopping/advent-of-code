@@ -3,6 +3,7 @@ package com.cpt.adventofcode.annotations;
 import com.cpt.adventofcode.solution.Solution;
 import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.RequiredArgsConstructor;
 
 import java.lang.annotation.Annotation;
@@ -30,6 +31,7 @@ public class AdventOfCodeSolutionResolver {
     @RequiredArgsConstructor
     @Data
     @Builder
+    @EqualsAndHashCode(exclude = {"description", "link", "tags"})
     public static class SolutionInfo {
         private final int year;
         private final int day;

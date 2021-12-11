@@ -36,6 +36,10 @@ dependencies {
     compileOnly 'org.projectlombok:lombok:1.18.22'
     implementation group: 'com.google.guava', name: 'guava', version: '31.0.1-jre'
     implementation group: 'com.diogonunes', name: 'JColor', version: '5.2.0'
+    implementation group: 'org.slf4j', name: 'slf4j-api', version: '1.8.0-beta4'
+    implementation group: 'org.slf4j', name: 'slf4j-nop', version: '1.8.0-beta4'
+
+
 
     annotationProcessor 'org.projectlombok:lombok:1.18.22'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'

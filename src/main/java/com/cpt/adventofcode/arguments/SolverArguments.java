@@ -30,6 +30,7 @@ public class SolverArguments {
         LATEST,
         VERBOSE,
         AVERAGE,
+        FASTEST,
         ;
 
         public static SolverArgumentType of(String argumentTypeString) {

@@ -39,11 +39,12 @@ To run a selection of solutions, use the following solverArguments:
 * `latest` - filter latest N solutions
 * `verbose` - adds verbose logging
 * `average` - averages the run duration across a given number of iterations
+* `fastest` - filters only fastest solution for each unique problem
 
 E.g:
 
 ```shell
-./gradlew run --args="year=2020,2021 day=1,2,3 part=2, tags=O(n),algebra latest=2 verbose=true average=100"
+./gradlew run --args="year=2020,2021 day=1,2,3 part=2, tags=O(n),algebra latest=2 verbose=true average=100, fastest=true"
 ```
 
 Tags can be negated using the `!` character, e.g. the following will run all solutions which do not contain

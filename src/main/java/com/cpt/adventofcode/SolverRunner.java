@@ -12,13 +12,10 @@ import java.text.MessageFormat;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
-import static com.cpt.adventofcode.arguments.SolverArguments.SolverArgumentType.AVERAGE;
-import static com.cpt.adventofcode.arguments.SolverArguments.SolverArgumentType.VERBOSE;
+import static com.cpt.adventofcode.arguments.SolverArguments.SolverArgumentType.*;
 import static com.diogonunes.jcolor.Attribute.TEXT_COLOR;
 
 public class SolverRunner {
@@ -32,12 +29,19 @@ public class SolverRunner {
         List<Solution<?>> solutions = new SolutionRetriever().retrieveSolutions(solverArguments);
         System.out.println(MessageFormat.format("Solving {0} solutions:", solutions.size()));
 
-        List<Result<?>> results = solveSolutions(solutions, getAveragingIterations(solverArguments));
+        List<Result<?>> results = solveSolutions(solutions, getAveragingIterations(solverArguments), isFastest(solverArguments));
 
         results.forEach(result -> printResult(isVerbose(solverArguments), getMaxDuration(results), result));
 
         Duration totalDuration = getTotalDuration(results);
-        System.out.printf("%nTotal duration: %s seconds.%n", FORMATTER.format(totalDuration.addTo(LocalDateTime.MIN)));
+        System.out.printf("%nSolved %d solutions with a total duration: %s seconds.%n", results.size(), FORMATTER.format(totalDuration.addTo(LocalDateTime.MIN)));
+    }
+
+    private static boolean isFastest(SolverArguments solverArguments) {
+        return solverArguments.get(FASTEST)
+                .map(strings -> strings.get(0))
+                .map(Boolean::parseBoolean)
+                .orElse(false);
     }
 
     private static Integer getAveragingIterations(SolverArguments solverArguments) {
@@ -47,11 +51,22 @@ public class SolverRunner {
                 .orElse(1);
     }
 
-    private static List<Result<?>> solveSolutions(List<Solution<?>> filteredSolutions, Integer averagingIterations) {
-        return filteredSolutions.stream()
-                .map((Solution<?> solution) -> solveSolution(solution, averagingIterations))
-                .sorted(SolverRunner::resultComparator)
-                .collect(Collectors.toList());
+    private static List<Result<?>> solveSolutions(List<Solution<?>> solutions, int averagingIterations, boolean fastest) {
+        if (fastest) {
+            Map<SolutionInfo, List<Result<?>>> resultsMap = solutions.stream()
+                    .map((Solution<?> solution) -> solveSolution(solution, averagingIterations))
+                    .collect(Collectors.groupingBy(Result::getSolutionInfo));
+
+            return resultsMap.values().stream()
+                    .map(results -> results.stream().min(Comparator.comparing(Result::getDuration)).orElse(null))
+                    .filter(Objects::nonNull)
+                    .sorted(SolverRunner::resultComparator)
+                    .collect(Collectors.toList());
+        } else {
+            return solutions.stream()
+                    .map(solution -> solveSolution(solution, averagingIterations))
+                    .collect(Collectors.toList());
+        }
     }
 
     private static long getMaxDuration(List<Result<?>> results) {
