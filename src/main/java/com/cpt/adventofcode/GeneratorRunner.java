@@ -23,6 +23,7 @@ public class GeneratorRunner {
         }
 
         new Generator().generate(arguments);
+        System.out.printf("Generated solution for year %s day %s part %s", arguments.get(YEAR), arguments.get(DAY), arguments.get(PART));
     }
 
     private static String getInput(BufferedReader reader, GeneratorArgumentType type) throws IOException {
