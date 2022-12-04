@@ -38,7 +38,7 @@ jobs:
         with:
           arguments: run --args="verbose=true"
 
-      - name: run averaging with gradle
+      - name: run averaging with gradle with 1 second limit
         uses: gradle/gradle-build-action@67421db6bd0bf253fb4bd25b31ebb98943c375e1
         with:
-          arguments: run --args="average=100"
+          arguments: run --args="average=100 limit=1.0"

@@ -35,7 +35,19 @@ public class SolverRunner {
         results.forEach(result -> printResult(isVerbose(solverArguments), getMaxDuration(results), result));
 
         Duration totalDuration = getTotalDuration(results);
+
         System.out.printf("%nSolved %d solutions with a total duration: %s seconds.%n", results.size(), FORMATTER.format(totalDuration.addTo(LocalDateTime.MIN)));
+
+        Double limit = getLimit(solverArguments);
+        if (null != limit) {
+            Duration limitInMillis = Duration.ofMillis((long) (limit * 1000));
+            if (totalDuration.compareTo(limitInMillis) > 0) {
+                System.out.printf("Solution time not within %s seconds limit", limit);
+                System.exit(1);
+            } else {
+                System.out.printf("Solution time within %s seconds limit", limit);
+            }
+        }
     }
 
     private static boolean isFastest(SolverArguments solverArguments) {
@@ -43,6 +55,13 @@ public class SolverRunner {
                 .map(strings -> strings.get(0))
                 .map(Boolean::parseBoolean)
                 .orElse(false);
+    }
+
+    private static Double getLimit(SolverArguments solverArguments) {
+        return solverArguments.get(LIMIT)
+                .map(strings -> strings.get(0))
+                .map(Double::parseDouble)
+                .orElse(null);
     }
 
     private static Integer getAveragingIterations(SolverArguments solverArguments) {

@@ -31,6 +31,7 @@ public class SolverArguments {
         VERBOSE,
         AVERAGE,
         FASTEST,
+        LIMIT
         ;
 
         public static SolverArgumentType of(String argumentTypeString) {
