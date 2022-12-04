@@ -2,6 +2,8 @@
 
 Solutions to the [Advent of Code](https://adventofcode.com/) problem sets.
 
+![build](https://github.com/ChrisTopping/advent-of-code/actions/workflows/build.yaml/badge.svg)
+
 ## Build
 
 Use the following command to build and test the project:
