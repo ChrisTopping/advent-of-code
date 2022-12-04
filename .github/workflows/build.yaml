@@ -36,9 +36,9 @@ jobs:
       - name: run with gradle
         uses: gradle/gradle-build-action@67421db6bd0bf253fb4bd25b31ebb98943c375e1
         with:
-          arguments: run
+          arguments: run --args="verbose=true"
 
       - name: run averaging with gradle
         uses: gradle/gradle-build-action@67421db6bd0bf253fb4bd25b31ebb98943c375e1
         with:
-          arguments: run --args="average=100"
+          arguments: run --args="average=100 verbose=true"
