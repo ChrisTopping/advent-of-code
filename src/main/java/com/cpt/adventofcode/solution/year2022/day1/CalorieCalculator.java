@@ -21,11 +21,10 @@ public class CalorieCalculator {
                 .filter(value -> input.get(value) == 0 || value == 0 || value == input.size() - 1)
                 .toArray();
 
-        List<Integer> sums = SlidingWindow.of(Arrays.stream(delimiterIndices).boxed().collect(Collectors.toList()), 2)
+        return SlidingWindow.of(Arrays.stream(delimiterIndices).boxed().collect(Collectors.toList()), 2)
                 .map(indices -> input.subList(indices.get(0), indices.get(1) + 1))
                 .map(calories -> calories.stream().mapToInt(value -> value).sum())
                 .collect(Collectors.toList());
-        return sums;
     }
 
 }
