@@ -19,8 +19,6 @@ public class Day10Part2Solution implements Solution<Long> {
 
     @Override
     public Long solve(Stream<String> inputStream) {
-
-        System.out.println("");
         List<List<String>> collect = inputStream.map(this::toCharacterStrings)
                 .filter(this::isIncomplete).collect(Collectors.toList());
 
