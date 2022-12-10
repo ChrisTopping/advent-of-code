@@ -27,7 +27,7 @@ public class NodeResolver {
             case DIRECTORY -> {
                 DirectoryResult directoryResult = (DirectoryResult) prompt;
                 Directory directory = NodeFactory.directory(parent, directoryResult.getName());
-                ((Directory)parent).addChild(directory);
+                ((Directory) parent).addChild(directory);
                 resolve(parent, prompt.getNext());
             }
             case CHANGE_DIRECTORY -> {
@@ -41,8 +41,6 @@ public class NodeResolver {
             }
             case BACK_DIRECTORY -> resolve(parent.getParent(), prompt.getNext());
             case LIST -> resolve(parent, prompt.getNext());
-            default -> {
-            }
         }
     }
 }
