@@ -8,10 +8,10 @@ import org.junit.jupiter.api.Test;
 class Day7Part1SolutionTest extends BaseTest<Long> {
 
     @Test
-    @DisplayName("Given test input: should return 95437")
-    void givenTestInput_ShouldReturn95437() {
+    @DisplayName("Given test input: should return 1084134")
+    void givenTestInput_ShouldReturn1084134() {
         Day7Part1Solution solution = new Day7Part1Solution();
-        assertSolutionIsCorrect(solution, 95437L);
+        assertSolutionIsCorrect(solution, 1084134L);
     }
 
 }
