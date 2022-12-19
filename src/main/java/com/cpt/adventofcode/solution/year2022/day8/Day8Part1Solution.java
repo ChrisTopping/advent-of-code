@@ -3,10 +3,10 @@ package com.cpt.adventofcode.solution.year2022.day8;
 import com.cpt.adventofcode.annotations.AdventOfCodeSolution;
 import com.cpt.adventofcode.solution.Solution;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 @AdventOfCodeSolution(year = 2022, day = 8, part = 1,
@@ -24,31 +24,50 @@ public class Day8Part1Solution implements Solution<Integer> {
                 .forEach(trees::addRow);
 
         int rowCount = trees.getRowCount();
-
-        IntStream.range(0, rowCount)
-                .forEach(row -> {
-                    ArrayList<Tree> tempRow = new ArrayList<>(trees.getRow(row));
-                    processLine(tempRow);
-                    Collections.reverse(tempRow);
-                    processLine(tempRow);
-                });
-
         int columnCount = trees.getColumnCount();
-
-        IntStream.range(0, columnCount)
-                .forEach(column -> {
-                    ArrayList<Tree> tempColumn = new ArrayList<>(trees.getColumn(column));
-                    processLine(tempColumn);
-                    Collections.reverse(tempColumn);
-                    processLine(tempColumn);
+        for (int row = 0; row < rowCount; row++) {
+            for (int column = 0; column < columnCount; column++) {
+                List<List<Tree>> scans = trees.getScans(row, column);
+                Tree tree = trees.get(row, column);
+                scans.forEach(scan -> {
+                    if (scan.size() == 0) {
+                        tree.setVisible();
+                    }
+                    boolean isVisible = scan.stream()
+                            .map(tree::isTallerThan)
+                            .reduce((first, second) -> first && second)
+                            .orElse(false);
+                    if (isVisible) {
+                        tree.setVisible();
+                    }
                 });
+            }
+        }
 
         return Math.toIntExact(trees.getAll().stream().filter(Tree::isVisible).count());
     }
 
-    private void processLine(List<Tree> line) {
-        AtomicReference<Tree> preceding = new AtomicReference<>(null);
-        line.forEach(tree -> preceding.set(tree.applyPreceding(preceding.get())));
+    private void solve2(Stream<String> inputStream) {
+        Matrix<Tree> trees = new Matrix<>();
+        inputStream
+                .map(this::getRowHeights)
+                .forEach(trees::addRow);
+
+        int rowCount = trees.getRowCount();
+        int columnCount = trees.getColumnCount();
+        for (int row = 0; row < rowCount; row++) {
+            for (int column = 0; column < columnCount; column++) {
+                List<List<Tree>> scans = trees.getScans(row, column);
+                Tree tree = trees.get(row, column);
+                scans.forEach(scan -> {
+                    for (Tree other : scan) {
+                        if (tree.isTallerThan(other)) {
+                            tree.setVisible();
+                        }
+                    }
+                });
+            }
+        }
     }
 
     private List<Tree> getRowHeights(String s) {

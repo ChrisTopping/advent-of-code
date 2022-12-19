@@ -1,9 +1,6 @@
 package com.cpt.adventofcode.solution.year2022.day8;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -31,10 +28,9 @@ class Matrix<T> {
     }
 
     public List<T> getColumn(int column) {
-        List<T> result = inner.stream()
+        return inner.stream()
                 .map(row -> row.get(column))
                 .collect(Collectors.toList());
-        return result;
     }
 
     public List<List<T>> getScans(int rowIndex, int columnIndex) {
@@ -55,5 +51,13 @@ class Matrix<T> {
         return inner.stream()
                 .flatMap(Collection::stream)
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public String toString() {
+        return inner.stream()
+                .map(items -> items.stream().map(Objects::toString).collect(Collectors.joining(" ")))
+                .collect(Collectors.joining("\n"));
+
     }
 }

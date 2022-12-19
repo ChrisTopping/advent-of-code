@@ -23,11 +23,15 @@ class Tree {
             this.visible = true;
             return this;
         } else if (this.isTallerThan(preceding)) {
+            this.visible = true;
             return preceding;
         } else {
-            this.visible = true;
             return this;
         }
+    }
+
+    public void setVisible() {
+        this.visible = true;
     }
 
     public void multiplyScenicScore(int multiplier) {
@@ -36,10 +40,11 @@ class Tree {
 
     @Override
     public String toString() {
-        return "Tree{" +
-                "height=" + height +
-                ", visible=" + visible +
-                ", visibility=" + scenicScore +
-                '}';
+        return String.valueOf(height) + (visible ? "+" : "-");
+//        return "Tree{" +
+//                "height=" + height +
+//                ", visible=" + visible +
+//                ", visibility=" + scenicScore +
+//                '}';
     }
 }
