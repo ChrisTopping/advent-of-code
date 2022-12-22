@@ -22,8 +22,6 @@ public class Day9Part1Solution implements Solution<Integer> {
                 .flatMap(Collection::stream)
                 .forEach(rope::moveHead);
 
-        rope.toString();
-
         return rope.countUniqueTailPositions();
     }
 
