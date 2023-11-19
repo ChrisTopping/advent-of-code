@@ -2,17 +2,20 @@ package com.cpt.adventofcode.solution.year2022.day10;
 
 import lombok.AllArgsConstructor;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Stack;
 import java.util.stream.Stream;
 
 @AllArgsConstructor
 public class Register {
-    Stack<Integer> record;
+    private final Stack<Integer> record;
+    private final List<String> pixels;
 
     public static Register initialise(Stream<String> input) {
         Stack<Integer> record = new Stack<>();
         record.push(1);
-        Register register = new Register(record);
+        Register register = new Register(record, new ArrayList<>());
 
         input.forEach(s -> {
             if (s.contains("noop")) {
@@ -24,13 +27,36 @@ public class Register {
         return register;
     }
 
-    public void add(int value) {
-        noop();
+    private void add(int value) {
+        draw();
+        record.push(record.peek());
+        draw();
         record.push(record.peek() + value);
     }
 
-    public void noop() {
+    private void noop() {
+        draw();
         record.push(record.peek());
+    }
+
+    private Integer value() {
+        return record.peek();
+    }
+
+    private Integer position() {
+        return Math.floorMod(pixels.size(), 40);
+    }
+
+    public void draw() {
+        if (Math.abs(value() - position()) <= 1) {
+            pixels.add("#");
+        } else {
+            pixels.add(".");
+        }
+    }
+
+    public String getPixels() {
+        return String.join("\n",String.join("", pixels).split("(?<=\\G.{40})"));
     }
 
     public long calculateSignalStrength(int initialCycle, int cycleInterval) {
