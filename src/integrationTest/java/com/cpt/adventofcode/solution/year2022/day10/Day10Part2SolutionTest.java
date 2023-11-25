@@ -11,7 +11,13 @@ class Day10Part2SolutionTest extends BaseTest<String> {
     @DisplayName("Given test input: should return ##..##..##..##..##..##..##..##..##..##..")
     void givenTestInput_ShouldReturnCorrectString() {
         Day10Part2Solution2022 solution = new Day10Part2Solution2022();
-        assertSolutionIsCorrect(solution, "##..##..##..##..##..##..##..##..##..##..");
+        assertSolutionIsCorrect(solution, "\n" +
+                "####...##..##..####.###...##..#....#..#.\n" +
+                "#.......#.#..#.#....#..#.#..#.#....#..#.\n" +
+                "###.....#.#....###..#..#.#....#....####.\n" +
+                "#.......#.#....#....###..#.##.#....#..#.\n" +
+                "#....#..#.#..#.#....#....#..#.#....#..#.\n" +
+                "####..##...##..#....#.....###.####.#..#.");
     }
 
 }
