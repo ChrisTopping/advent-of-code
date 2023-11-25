@@ -16,7 +16,6 @@ public class Day10Part1Solution2022 implements Solution<Long> {
     public Long solve(Stream<String> inputStream) {
         Register register = Register.initialise(inputStream);
         return register.calculateSignalStrength(20, 40);
-//        return 13140L;
     }
 
 }
