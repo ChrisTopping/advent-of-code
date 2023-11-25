@@ -1,6 +1,6 @@
 package com.cpt.adventofcode.solution.year2022.day1;
 
-import com.cpt.adventofcode.solution.year2021.day1.SlidingWindow;
+import com.cpt.adventofcode.helpers.SlidingWindow;
 import com.google.common.base.Strings;
 
 import java.util.Arrays;

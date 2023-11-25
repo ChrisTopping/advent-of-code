@@ -10,7 +10,7 @@ class Day10Part2SolutionTest extends BaseTest<String> {
     @Test
     @DisplayName("Given test input: should return ##..##..##..##..##..##..##..##..##..##..")
     void givenTestInput_ShouldReturn##..##..##..##..##..##..##..##..##..##..() {
-        Day10Part2Solution solution = new Day10Part2Solution();
+        Day10Part2Solution2022 solution = new Day10Part2Solution2022();
         assertSolutionIsCorrect(solution, ##..##..##..##..##..##..##..##..##..##..);
     }
 
