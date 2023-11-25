@@ -52,19 +52,19 @@ public class Generator {
 
     private void createSolutionFile(int year, int day, int part, String content) throws IOException {
         Path directoryPath = getRelativePath("src", "main", "java", "com", "cpt", "adventofcode", "solution", "year" + year, "day" + day);
-        Path filePath = Paths.get(directoryPath.toString(), "Day" + day + "Part" + part + "Solution.java");
+        Path filePath = Paths.get(directoryPath.toString(), "Day" + day + "Part" + part + "Solution" +  year + ".java");
         createFile(content, filePath);
     }
 
     private void createTestFile(int year, int day, int part, String content) throws IOException {
         Path directoryPath = getRelativePath("src", "test", "java", "com", "cpt", "adventofcode", "solution", "year" + year, "day" + day);
-        Path filePath = Paths.get(directoryPath.toString(), "Day" + day + "Part" + part + "SolutionTest.java");
+        Path filePath = Paths.get(directoryPath.toString(), "Day" + day + "Part" + part + "Solution" +  year + "Test.java");
         createFile(content, filePath);
     }
 
     private void createIntegrationTestFile(int year, int day, int part, String content) throws IOException {
         Path directoryPath = getRelativePath("src", "integrationTest", "java", "com", "cpt", "adventofcode", "solution", "year" + year, "day" + day);
-        Path filePath = Paths.get(directoryPath.toString(), "Day" + day + "Part" + part + "SolutionTest.java");
+        Path filePath = Paths.get(directoryPath.toString(), "Day" + day + "Part" + part + "Solution" + year + "IntegrationTest.java");
         createFile(content, filePath);
     }
 

@@ -10,7 +10,7 @@ import java.util.stream.Stream;
         link = "{LINK}",
         tags = "{TAGS}"
 )
-public class Day{DAY}Part{PART}Solution implements Solution<{RESPONSE_TYPE}> {
+public class Day{DAY}Part{PART}Solution{YEAR} implements Solution<{RESPONSE_TYPE}> {
 
     @Override
     public {RESPONSE_TYPE} solve(Stream<String> inputStream) {
