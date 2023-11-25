@@ -33,6 +33,7 @@ configurations {
 
 dependencies {
     implementation group: 'org.reflections', name: 'reflections', version: '0.10.2'
+    implementation 'org.projectlombok:lombok:1.18.20'
     compileOnly 'org.projectlombok:lombok:1.18.22'
     implementation group: 'com.google.guava', name: 'guava', version: '31.0.1-jre'
     implementation group: 'com.diogonunes', name: 'JColor', version: '5.2.0'

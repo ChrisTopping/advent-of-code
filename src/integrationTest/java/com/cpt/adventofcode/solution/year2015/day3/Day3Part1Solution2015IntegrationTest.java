@@ -5,7 +5,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 @DisplayName("Day 3 Part 1")
-class Day3Part1Solution2015Test extends BaseTest<Integer> {
+class Day3Part1Solution2015IntegrationTest extends BaseTest<Integer> {
 
     @Test
     @DisplayName("Given test input: should return 2081")
