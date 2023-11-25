@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @AdventOfCodeSolution(year = 2015, day = 2, part = 2,
-        description = "v",
+        description = "I Was Told There Would Be No Math",
         link = "https://adventofcode.com/2015/day/2#part2",
         tags = ""
 )
