@@ -31,6 +31,7 @@ public class Day1Part2Solution2023 implements Solution<Integer> {
         return inputStream
                 .map(this::replaceWrittenDigits)
                 .map(this::getAllDigits)
+                .filter(s -> !s.isEmpty())
                 .map(this::getFirstAndLastDigit)
                 .mapToInt(Integer::parseInt)
                 .sum();

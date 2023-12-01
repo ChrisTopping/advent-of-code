@@ -16,6 +16,7 @@ public class Day1Part1Solution2023 implements Solution<Integer> {
     public Integer solve(Stream<String> inputStream) {
         return inputStream
                 .map(this::getAllDigits)
+                .filter(s -> !s.isEmpty())
                 .map(this::getFirstAndLastDigit)
                 .mapToInt(Integer::parseInt)
                 .sum();
