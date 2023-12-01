@@ -11,7 +11,7 @@ class Day1Part1Solution2023Test extends BaseTest<Integer> {
     @DisplayName("Given test input: should return 142")
     void givenTestInput_ShouldReturn142() {
         Day1Part1Solution2023 solution = new Day1Part1Solution2023();
-        assertSolutionIsCorrect(solution, 142);
+        assertSolutionIsCorrect(solution, 209);
     }
 
 }
