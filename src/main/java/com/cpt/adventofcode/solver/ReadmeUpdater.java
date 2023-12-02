@@ -17,8 +17,8 @@ public class ReadmeUpdater {
 
         Pattern pattern = Pattern.compile("```results.*---", Pattern.DOTALL);
         readmeContent = pattern.matcher(readmeContent).replaceFirst("```results\n" + results + "```\n---")
-                .replaceAll("\u001B\\[\\d+;\\d+;\\d+;\\d+;0m", "")
-                .replaceAll("\u001B\\[0m", "");
+                .replaceAll("\u001B\\[\\d+;\\d+;\\d+;\\d+;0m", "") // stripping ASCII colour coding
+                .replaceAll("\u001B\\[0m", ""); // stripping ASCII colour coding
 
         updateReadme(readmeContent);
     }
