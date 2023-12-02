@@ -6,7 +6,7 @@ Solutions to the [Advent of Code](https://adventofcode.com/) problem sets.
 
 ### Results
 
-```text
+```results
 Solving 61 solutions:
 
 Year Day Part Name                                          Result          Duration (s)
