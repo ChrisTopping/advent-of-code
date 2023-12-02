@@ -14,7 +14,7 @@ jobs:
       - name: checkout
         uses: actions/checkout@v3
 
-      - name: Set up JDK 17
+      - name: set up JDK 17
         uses: actions/setup-java@v3
         with:
           java-version: '17'
@@ -36,4 +36,5 @@ jobs:
       - name: run all solutions
         run: ./gradlew run --args="readme=true"
 
-      - uses: stefanzweifel/git-auto-commit-action@v4
+      - name: auto-commit README.md changes
+        uses: stefanzweifel/git-auto-commit-action@v4
