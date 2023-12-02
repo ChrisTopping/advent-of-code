@@ -58,6 +58,52 @@ the `alternative` tag:
 
 ## Adding solutions
 
+### Scrape
+
+You can scrape data needed to create an empty solution for today's problem with the following command:
+
+```shell
+./gradlew scrape --args="today=true"
+```
+
+Or optionally, to set the result type:
+
+```shell
+./gradlew scrape --args="today=true type=<type>"
+```
+
+To create a solution for a specific day in this way, use the following command:
+
+```shell
+./gradlew scrape --args="year=<year> day=<day>"
+```
+
+And to do this while setting the result type:
+
+```shell
+./gradlew scrape --args="year<year> day=<day> type=<type>"
+```
+
+This will generate:
+* a solution class for part 1
+* a solution class for part 2
+* a unit test for part 1
+* a unit test for part 2
+* an integration test for part 1
+* an integration test for part 2
+* a populated input file
+* a blank test input file
+
+To use this feature, create a `.env` file in the root of the project and add an entry containing your long-lived session cookie:
+
+```text
+SESSION=<your session cookie>
+```
+
+This can be obtained from inspecting cookies on the www.adventofcode.com website when logged in. The session cookies generaly do not refresh until logout.
+
+### Generate
+
 Use the following command to automatically generate a solution template:
 
 ```shell
@@ -65,6 +111,8 @@ Use the following command to automatically generate a solution template:
 ```
 
 Then enter the data when prompted.
+
+### Manual
 
 To manually add a solution, implement the `Solution<T>` interface and annotate it with the `@AdventOfCodeSolution`
 annotation:
