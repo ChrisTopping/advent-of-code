@@ -50,7 +50,8 @@ public class SolverRunner {
 
         resultsBuilder.append("=".repeat(88)).append("\n");
 
-        if (shouldUpdateReadme(solverArguments)) ReadmeUpdater.replaceReadmeResults(resultsBuilder.toString());
+//        if (shouldUpdateReadme(solverArguments)) ReadmeUpdater.replaceReadmeResults(resultsBuilder.toString());
+        ReadmeUpdater.replaceReadmeResults(resultsBuilder.toString());
 
         System.out.print(resultsBuilder);
 
