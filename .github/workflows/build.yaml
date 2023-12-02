@@ -33,5 +33,7 @@ jobs:
         with:
           arguments: integrationTest
 
-      - name: run averaging with 1 second limit
-        run: ./gradlew run --args="average=10 fastest=true limit=1000"
+      - name: run all solutions
+        run: ./gradlew run --args="readme=true"
+
+      - uses: stefanzweifel/git-auto-commit-action@v4
