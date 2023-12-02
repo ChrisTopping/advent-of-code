@@ -1,0 +1,17 @@
+package com.cpt.adventofcode.solution.year{YEAR}.day{DAY};
+
+import com.cpt.adventofcode.BaseTest;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+
+@DisplayName("Day {DAY} Part {PART}")
+class Day{DAY}Part{PART}Solution{YEAR}IntegrationTest extends BaseTest<{RESPONSE_TYPE}> {
+
+    @Test
+    @DisplayName("Given test input: should return {TEST_RESPONSE}")
+    void givenTestInput_ShouldReturn{TEST_RESPONSE}() {
+        Day{DAY}Part{PART}Solution{YEAR} solution = new Day{DAY}Part{PART}Solution{YEAR}();
+        assertSolutionIsCorrect(solution, {TEST_RESPONSE});
+    }
+
+}
