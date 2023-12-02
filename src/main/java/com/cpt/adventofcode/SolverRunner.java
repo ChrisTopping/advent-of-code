@@ -4,10 +4,12 @@ import com.cpt.adventofcode.annotations.AdventOfCodeSolutionResolver.SolutionInf
 import com.cpt.adventofcode.arguments.SolverArguments;
 import com.cpt.adventofcode.result.Result;
 import com.cpt.adventofcode.solution.Solution;
+import com.cpt.adventofcode.solver.ReadmeUpdater;
 import com.cpt.adventofcode.solver.SolutionRetriever;
 import com.cpt.adventofcode.solver.Solver;
 import com.diogonunes.jcolor.AnsiFormat;
 
+import java.io.IOException;
 import java.text.MessageFormat;
 import java.time.Duration;
 import java.time.LocalDateTime;
@@ -23,7 +25,7 @@ public class SolverRunner {
     private static final Solver SOLVER = new Solver();
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("s.SSS");
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         SolverArguments solverArguments = new SolverArguments(args);
 
         List<Solution<?>> solutions = new SolutionRetriever().retrieveSolutions(solverArguments);
@@ -31,7 +33,9 @@ public class SolverRunner {
 
         List<Result<?>> results = solveSolutions(solutions, getAveragingIterations(solverArguments), isFastest(solverArguments));
 
-        if (!isVerbose(solverArguments)) System.out.println(Result.getLaconicHeaders());
+        StringBuilder resultsBuilder = new StringBuilder();
+
+        if (!isVerbose(solverArguments)) resultsBuilder.append(Result.getLaconicHeaders()).append("\n");
 
         results
                 .stream()
@@ -40,11 +44,15 @@ public class SolverRunner {
                 .stream()
                 .sorted(Comparator.comparingInt(Map.Entry::getKey))
                 .forEach((entry) -> {
-                    System.out.println("=".repeat(88));
-                    entry.getValue().forEach(result -> printResult(isVerbose(solverArguments), getMaxDuration(results), result));
+                    resultsBuilder.append("=".repeat(88)).append("\n");
+                    entry.getValue().forEach(result -> resultsBuilder.append(printResult(isVerbose(solverArguments), getMaxDuration(results), result)).append("\n"));
                 });
 
-        System.out.println("=".repeat(88));
+        resultsBuilder.append("=".repeat(88)).append("\n");
+
+        if (shouldUpdateReadme(solverArguments)) ReadmeUpdater.replaceReadmeResults(resultsBuilder.toString());
+
+        System.out.print(resultsBuilder);
 
         Duration totalDuration = getTotalDuration(results);
 
@@ -61,7 +69,7 @@ public class SolverRunner {
             }
         }
     }
-    //2023 2   2    Cube Conundrum                                72513           0.007
+
 
     private static boolean isFastest(SolverArguments solverArguments) {
         return solverArguments.get(FASTEST)
@@ -141,11 +149,18 @@ public class SolverRunner {
                 .orElse(false);
     }
 
-    private static void printResult(Boolean verbose, long maxDuration, Result<?> result) {
+    private static Boolean shouldUpdateReadme(SolverArguments solverArguments) {
+        return solverArguments.get(README)
+                .map(strings -> strings.get(0))
+                .map(Boolean::parseBoolean)
+                .orElse(false);
+    }
+
+    private static String printResult(Boolean verbose, long maxDuration, Result<?> result) {
         double relativeDuration = 1.0 * result.getDuration().toMillis() / maxDuration;
         int red = (int) (255 * relativeDuration);
         int green = (int) (255 * (1 - relativeDuration));
-        System.out.println(verbose ? result.getVerbosePrintString() : result.getLaconicPrintString(new AnsiFormat(TEXT_COLOR(red, green, 0))));
+        return verbose ? result.getVerbosePrintString() : result.getLaconicPrintString(new AnsiFormat(TEXT_COLOR(red, green, 0)));
     }
 
     private static Duration getTotalDuration(List<Result<?>> results) {
