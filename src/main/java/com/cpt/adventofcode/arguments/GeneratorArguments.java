@@ -6,14 +6,14 @@ import lombok.Getter;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
-import java.util.stream.Stream;
 
 public class GeneratorArguments {
 
     private final Map<GeneratorArgumentType, String> argumentMap = new HashMap<>();
 
-    public void put(GeneratorArgumentType type, String value) {
+    public GeneratorArguments put(GeneratorArgumentType type, String value) {
         argumentMap.put(type, value);
+        return this;
     }
 
     public String get(GeneratorArgumentType type) {
@@ -32,9 +32,9 @@ public class GeneratorArguments {
         DESCRIPTION(3, "Description", false),
         LINK(4, "Link", false),
         TAGS(5, "Tags", false),
-        RESPONSE_TYPE(6, "Response type", false),
+        RESPONSE_TYPE(6, "Answer type", false),
         TEST_INPUT(7, "Test input", true),
-        TEST_RESPONSE(8, "Test response", false),
+        TEST_RESPONSE(8, "Test answer", false),
         INPUT(9, "Input", true),
         ;
 

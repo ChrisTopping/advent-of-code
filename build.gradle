@@ -39,6 +39,12 @@ dependencies {
     implementation group: 'com.diogonunes', name: 'JColor', version: '5.2.0'
     implementation group: 'org.slf4j', name: 'slf4j-api', version: '1.8.0-beta4'
     implementation group: 'org.slf4j', name: 'slf4j-nop', version: '1.8.0-beta4'
+    implementation group: 'com.squareup.okhttp3', name: 'okhttp', version: '4.10.0'
+    implementation group: 'org.jsoup', name: 'jsoup', version: '1.17.1'
+    implementation group: 'io.github.cdimascio', name: 'java-dotenv', version: '5.2.2'
+
+
+
 
 
 
@@ -87,9 +93,16 @@ application {
 
 task generate(type: JavaExec) {
     group = "Execution"
-    description = "Generate a new test"
+    description = "Generate a new solution"
     classpath = sourceSets.main.runtimeClasspath
     mainClass = "com.cpt.adventofcode.GeneratorRunner"
     standardInput = System.in
     standardOutput = System.out
+}
+
+task scrape(type: JavaExec) {
+    group = "Execution"
+    description = "Generate a new solution by scraping adventofcode"
+    classpath = sourceSets.main.runtimeClasspath
+    mainClass = "com.cpt.adventofcode.ScraperRunner"
 }
