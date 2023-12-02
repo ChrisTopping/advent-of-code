@@ -27,12 +27,22 @@ public class SolverRunner {
         SolverArguments solverArguments = new SolverArguments(args);
 
         List<Solution<?>> solutions = new SolutionRetriever().retrieveSolutions(solverArguments);
-        System.out.println(MessageFormat.format("Solving {0} solutions:", solutions.size()));
+        System.out.println(MessageFormat.format("Solving {0} solutions:\n", solutions.size()));
 
         List<Result<?>> results = solveSolutions(solutions, getAveragingIterations(solverArguments), isFastest(solverArguments));
 
         if (!isVerbose(solverArguments)) System.out.println(Result.getLaconicHeaders());
-        results.forEach(result -> printResult(isVerbose(solverArguments), getMaxDuration(results), result));
+
+        results
+                .stream()
+                .collect(Collectors.groupingBy(result -> result.getSolutionInfo().getYear()))
+                .entrySet()
+                .stream()
+                .sorted(Comparator.comparingInt(Map.Entry::getKey))
+                .forEach((entry) -> {
+                    System.out.println("=".repeat(81));
+                    entry.getValue().forEach(result -> printResult(isVerbose(solverArguments), getMaxDuration(results), result));
+                });
 
         Duration totalDuration = getTotalDuration(results);
 
@@ -49,6 +59,7 @@ public class SolverRunner {
             }
         }
     }
+    //2023 2   2    Cube Conundrum                                72513           0.007
 
     private static boolean isFastest(SolverArguments solverArguments) {
         return solverArguments.get(FASTEST)
