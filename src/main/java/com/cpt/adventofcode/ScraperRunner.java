@@ -15,8 +15,6 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static com.cpt.adventofcode.arguments.GeneratorArguments.GeneratorArgumentType.*;
-import static com.cpt.adventofcode.arguments.GeneratorArguments.GeneratorArgumentType.DAY;
-import static com.cpt.adventofcode.arguments.GeneratorArguments.GeneratorArgumentType.YEAR;
 
 public class ScraperRunner {
 
@@ -29,7 +27,7 @@ public class ScraperRunner {
             LocalDate today = LocalDate.now();
             year = String.valueOf(today.getYear());
             day = String.valueOf(today.getDayOfMonth());
-        }  else if (arguments.has(ScraperArguments.ScraperArgumentType.YEAR, ScraperArguments.ScraperArgumentType.DAY)) {
+        } else if (arguments.has(ScraperArguments.ScraperArgumentType.YEAR, ScraperArguments.ScraperArgumentType.DAY)) {
             year = arguments.getFirst(ScraperArguments.ScraperArgumentType.YEAR);
             day = arguments.getFirst(ScraperArguments.ScraperArgumentType.DAY);
         } else {
@@ -50,6 +48,14 @@ public class ScraperRunner {
     private static void generateSolutions(String year, String day, String description, String type, Stream<String> input) {
         Generator generator = new Generator();
 
+        String testResponse = switch (type.toLowerCase()) {
+            case "long" -> "0L";
+            case "double" -> "0D";
+            case "float" -> "0F";
+            case "boolean" -> "true";
+            default -> "0";
+        };
+
         GeneratorArguments generatorArguments = new GeneratorArguments()
                 .put(YEAR, String.valueOf(year))
                 .put(DAY, String.valueOf(day))
@@ -59,7 +65,7 @@ public class ScraperRunner {
                 .put(TAGS, "")
                 .put(RESPONSE_TYPE, type)
                 .put(TEST_INPUT, "")
-                .put(TEST_RESPONSE, "0")
+                .put(TEST_RESPONSE, testResponse)
                 .put(INPUT, input.collect(Collectors.joining("\n")));
 
         generator.generate(generatorArguments);
