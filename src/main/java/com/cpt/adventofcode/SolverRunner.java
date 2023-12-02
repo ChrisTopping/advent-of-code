@@ -40,9 +40,11 @@ public class SolverRunner {
                 .stream()
                 .sorted(Comparator.comparingInt(Map.Entry::getKey))
                 .forEach((entry) -> {
-                    System.out.println("=".repeat(81));
+                    System.out.println("=".repeat(88));
                     entry.getValue().forEach(result -> printResult(isVerbose(solverArguments), getMaxDuration(results), result));
                 });
+
+        System.out.println("=".repeat(88));
 
         Duration totalDuration = getTotalDuration(results);
 
