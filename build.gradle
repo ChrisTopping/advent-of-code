@@ -7,7 +7,8 @@ plugins {
 
 group 'com.cpt'
 version '1.0-SNAPSHOT'
-sourceCompatibility = '17'
+sourceCompatibility = "17"
+targetCompatibility = "17"
 
 repositories {
     mavenCentral()
@@ -106,3 +107,4 @@ task scrape(type: JavaExec) {
     classpath = sourceSets.main.runtimeClasspath
     mainClass = "com.cpt.adventofcode.ScraperRunner"
 }
+

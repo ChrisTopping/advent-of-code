@@ -1,11 +1,12 @@
 package com.cpt.adventofcode.helpers;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -38,6 +39,27 @@ public class Strings {
                 .collect(Collectors.toList());
     }
 
+    public static Map<String, Object> parse(String input, ItemMatcher itemMatcher) {
+        Map<String, Object> results = new HashMap<>();
+        Pattern pattern = Pattern.compile(itemMatcher.pattern);
+        Matcher matcher = pattern.matcher(input);
+        matcher.find();
+
+        itemMatcher.typeMap.entrySet().forEach(entry -> {
+            String result = matcher.group(entry.getKey());
+            Object value = result == null ? entry.getValue().getDefaultValue() : entry.getValue().cast(result);
+            results.put(entry.getKey(), value);
+        });
+
+        return results;
+    }
+
+    @AllArgsConstructor
+    public static class ItemMatcher {
+        private String pattern;
+        private Map<String, Type> typeMap;
+    }
+
     @Builder
     @Getter
     public static class ParserParameter {
@@ -67,12 +89,22 @@ public class Strings {
     }
 
     public enum Type {
-        STRING,
-        INTEGER,
-        LONG,
-        FLOAT,
-        DOUBLE,
-        BOOLEAN;
+        STRING(""),
+        INTEGER(0),
+        LONG(0L),
+        FLOAT(0F),
+        DOUBLE(0D),
+        BOOLEAN(false);
+
+        private final Object defaultValue;
+
+        Type(Object defaultValue) {
+            this.defaultValue = defaultValue;
+        }
+
+        public Object getDefaultValue() {
+            return defaultValue;
+        }
 
         public <T> T cast(String input) {
             return (T) switch (this) {
