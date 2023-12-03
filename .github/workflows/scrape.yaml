@@ -30,7 +30,7 @@ jobs:
       - name: scrape today's solution
         run: ./gradlew scrape --args="today=true"
 
-      - name: auto-commit README.md changes
+      - name: auto-commit today's solution files
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: Adding today's problem
