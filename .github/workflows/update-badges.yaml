@@ -1,0 +1,27 @@
+name: Update AoC Badges
+
+# run every day at 23:23
+# low traffic time for AoC
+# intentionally running all year round to capture working through backlog
+on:
+  schedule:
+    - cron: '23 23 * * *'
+  workflow_dispatch:
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: joblo2213/aoc-badges-action@v3
+        with:
+          userid: 1795620
+          session: ${{ secrets.AOC_SESSION }}
+          starsRegex: '(?<=https:\/\/img\.shields\.io\/badge\/⭐%20Stars-)[0-9]+(?=-yellow)'
+          daysCompletedRegex: '(?<=https:\/\/img\.shields\.io\/badge\/✅%20Days%20completed-)[0-9]+(?=-red)'
+
+      - uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: Update badges
+          file_pattern: README.md
