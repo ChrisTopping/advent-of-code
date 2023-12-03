@@ -54,7 +54,7 @@ public class SolverRunner {
 
         resultsBuilder.append(String.format("%nSolved %d solutions with a total duration: %s seconds.%n", results.size(), FORMATTER.format(totalDuration.addTo(LocalDateTime.MIN))));
 
-        ReadmeUpdater.replaceReadmeResults(resultsBuilder.toString());
+        if (shouldUpdateReadme(solverArguments)) ReadmeUpdater.replaceReadmeResults(resultsBuilder.toString());
         System.out.print(resultsBuilder);
 
         Double limit = getLimit(solverArguments);
