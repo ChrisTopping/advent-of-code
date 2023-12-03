@@ -10,62 +10,62 @@ Solutions to the [Advent of Code](https://adventofcode.com/) problem sets.
 Year Day Part Name                                          Result          Duration (s)
 ========================================================================================
 2015 1   1    Not Quite Lisp                                74              0.016
-2015 1   2    Not Quite Lisp                                1795            0.010
+2015 1   2    Not Quite Lisp                                1795            0.009
 2015 2   1    I Was Told There Would Be No Math             1606483         0.018
 2015 2   2    I Was Told There Would Be No Math             3842356         0.008
 2015 3   1    Perfectly Spherical Houses in a Vacuum        2081            0.010
-2015 3   2    Perfectly Spherical Houses in a Vacuum        2341            0.014
-2015 4   1    The Ideal Stocking Stuffer                    117946          0.405
-2015 4   2    The Ideal Stocking Stuffer                    3938038         4.292
+2015 3   2    Perfectly Spherical Houses in a Vacuum        2341            0.013
+2015 4   1    The Ideal Stocking Stuffer                    117946          0.383
+2015 4   2    The Ideal Stocking Stuffer                    3938038         4.360
 2015 5   1    Doesn't He Have Intern-Elves For This?        258             0.014
 2015 5   2    Doesn't He Have Intern-Elves For This?        53              0.007
-2015 6   1    Probably a Fire Hazard                        569999          0.083
-2015 6   2    Probably a Fire Hazard                        17836115        0.057
+2015 6   1    Probably a Fire Hazard                        569999          0.050
+2015 6   2    Probably a Fire Hazard                        17836115        0.070
 ========================================================================================
 2021 1   1    Sonar Sweep                                   1400            0.003
 2021 1   2    Sonar Sweep                                   1429            0.005
 2021 2   1    Dive!                                         1580000         0.002
-2021 2   2    Dive!                                         1251263225      0.001
-2021 3   1    Binary Diagnostic                             3374136         0.012
-2021 3   2    Binary Diagnostic                             4432698         0.010
-2021 4   1    Giant Squid                                   31424           0.035
-2021 4   2    Giant Squid                                   23042           0.051
-2021 5   1    Hydrothermal Venture                          6189            0.102
-2021 5   2    Hydrothermal Venture                          19164           0.020
+2021 2   2    Dive!                                         1251263225      0.002
+2021 3   1    Binary Diagnostic                             3374136         0.010
+2021 3   2    Binary Diagnostic                             4432698         0.006
+2021 4   1    Giant Squid                                   31424           0.039
+2021 4   2    Giant Squid                                   23042           0.043
+2021 5   1    Hydrothermal Venture                          6189            0.042
+2021 5   2    Hydrothermal Venture                          19164           0.016
 2021 6   1    Lanternfish                                   387413          0.003
 2021 6   2    Lanternfish                                   1738377086345   0.004
 2021 7   1    The Treachery of Whales                       345197          0.004
-2021 7   2    The Treachery of Whales                       96361630        0.004
+2021 7   2    The Treachery of Whales                       96361630        0.003
 2021 8   1    Seven Segment Search                          272             0.004
-2021 8   2    Seven Segment Search - Frequency              1007675         0.038
-2021 8   2    Seven Segment Search - Frequency Density      1007675         0.012
-2021 8   2    Seven Segment Search - Naive                  1007675         0.035
-2021 9   1    Smoke Basin                                   537             0.010
-2021 9   2    Smoke Basin - Set                             1142757         0.071
-2021 9   2    Smoke Basin - Counting                        1142757         0.004
+2021 8   2    Seven Segment Search - Frequency              1007675         0.052
+2021 8   2    Seven Segment Search - Frequency Density      1007675         0.013
+2021 8   2    Seven Segment Search - Naive                  1007675         0.044
+2021 9   1    Smoke Basin                                   537             0.011
+2021 9   2    Smoke Basin - Set                             1142757         0.049
+2021 9   2    Smoke Basin - Counting                        1142757         0.003
 2021 10  1    Syntax Scoring                                311895          0.006
-2021 10  2    Syntax Scoring                                2904180541      0.008
-2021 11  1    Dumbo Octopus                                 1655            0.003
+2021 10  2    Syntax Scoring                                2904180541      0.006
+2021 11  1    Dumbo Octopus                                 1655            0.002
 2021 11  2    Dumbo Octopus                                 337             0.007
 ========================================================================================
-2022 1   1    Calorie Counter                               66306           0.014
-2022 1   2    Calorie Counter                               195292          0.002
-2022 2   1    Rock Paper Scissors                           9759            0.010
-2022 2   2    Rock Paper Scissors                           12429           0.006
+2022 1   1    Calorie Counter                               66306           0.011
+2022 1   2    Calorie Counter                               195292          0.001
+2022 2   1    Rock Paper Scissors                           9759            0.011
+2022 2   2    Rock Paper Scissors                           12429           0.008
 2022 3   1    Rucksack Reorganization                       7980            0.007
 2022 3   2    Rucksack Reorganization                       2881            0.009
 2022 4   1    Camp Cleanup                                  582             0.002
 2022 4   2    Camp Cleanup                                  893             0.001
 2022 5   1    Supply Stacks                                 TDCHVHJTG       0.016
-2022 5   2    Supply Stacks                                 NGCMPJLHV       0.006
+2022 5   2    Supply Stacks                                 NGCMPJLHV       0.004
 2022 6   1    Tuning Trouble                                1578            0.002
 2022 6   2    Tuning Trouble                                2178            0.002
 2022 7   1    No Space Left On Device                       1084134         0.020
 2022 7   2    No Space Left On Device                       6183184         0.010
 2022 8   1    Treetop Tree House                            1543            0.105
 2022 8   2    Treetop Tree House                            595080          0.055
-2022 9   1    Rope Bridge                                   6057            0.019
-2022 9   2    Rope Bridge                                   2514            0.029
+2022 9   1    Rope Bridge                                   6057            0.020
+2022 9   2    Rope Bridge                                   2514            0.035
 2022 10  1    Cathode-Ray Tube                              11960           0.001
 2022 10  2    Cathode-Ray Tube                              
 ####...##..##..####.###...##..#....#..#.
@@ -77,8 +77,8 @@ Year Day Part Name                                          Result          Dura
 ========================================================================================
 2023 1   1    Trebuchet?!                                   54940           0.021
 2023 1   2    Trebuchet?!                                   54208           0.017
-2023 2   1    Cube Conundrum                                2162            0.012
-2023 2   2    Cube Conundrum                                72513           0.006
+2023 2   1    Cube Conundrum                                2162            0.011
+2023 2   2    Cube Conundrum                                72513           0.005
 ========================================================================================
 ```
 ---
