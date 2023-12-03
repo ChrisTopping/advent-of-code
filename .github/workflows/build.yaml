@@ -38,3 +38,5 @@ jobs:
 
       - name: auto-commit README.md changes
         uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: Updating results in README
