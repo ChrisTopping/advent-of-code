@@ -202,7 +202,7 @@ annotation:
 public class Day1Part1Solution implements Solution<Integer> {
 
     @Override
-    public Long solve(Stream<String> inputStream) {
+    public Integer solve(Stream<String> inputStream) {
         ...
     }
 }
