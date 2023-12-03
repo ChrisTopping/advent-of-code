@@ -29,9 +29,9 @@ jobs:
 
       - name: scrape today's solution
         shell: bash
-        env:
-          SESSION=${{ secrets.SESSION }}
         run: ./gradlew scrape --args="today=true"
+        env:
+          SESSION: ${{ secrets.SESSION }}
 
       - name: auto-commit today's solution files
         uses: stefanzweifel/git-auto-commit-action@v5
