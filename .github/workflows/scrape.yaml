@@ -3,7 +3,7 @@ name: 'Scrape problems'
 on:
   workflow_dispatch:
   schedule:
-    - cron: '1 4 1-25 12 *'
+    - cron: '1 5 1-25 12 *'
 
 jobs:
   build_and_scrape:
