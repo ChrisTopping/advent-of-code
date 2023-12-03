@@ -50,14 +50,12 @@ public class SolverRunner {
 
         resultsBuilder.append("=".repeat(88)).append("\n");
 
-//        if (shouldUpdateReadme(solverArguments)) ReadmeUpdater.replaceReadmeResults(resultsBuilder.toString());
-        ReadmeUpdater.replaceReadmeResults(resultsBuilder.toString());
-
-        System.out.print(resultsBuilder);
-
         Duration totalDuration = getTotalDuration(results);
 
-        System.out.printf("%nSolved %d solutions with a total duration: %s seconds.%n", results.size(), FORMATTER.format(totalDuration.addTo(LocalDateTime.MIN)));
+        resultsBuilder.append(String.format("%nSolved %d solutions with a total duration: %s seconds.%n", results.size(), FORMATTER.format(totalDuration.addTo(LocalDateTime.MIN))));
+
+        ReadmeUpdater.replaceReadmeResults(resultsBuilder.toString());
+        System.out.print(resultsBuilder);
 
         Double limit = getLimit(solverArguments);
         if (null != limit) {
