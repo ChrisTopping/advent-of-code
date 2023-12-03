@@ -27,7 +27,7 @@ class Line {
             if (numberMatcher.find()) {
                 int start = numberMatcher.start();
                 int end = numberMatcher.end() - 1;
-                Number number = new Number(Integer.parseInt(input.substring(start, end + 1)), start, end, y);
+                Number number = new Number(Integer.parseInt(numberMatcher.group(0)), start, end, y);
                 numbers.add(number);
             } else {
                 hasNumbers = false;
