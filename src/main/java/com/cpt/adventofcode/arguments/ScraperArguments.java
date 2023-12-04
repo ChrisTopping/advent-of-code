@@ -38,7 +38,9 @@ public class ScraperArguments {
         YEAR,
         DAY,
         TODAY,
-        TYPE;
+        TYPE,
+        EXAMPLE
+        ;
 
         public static ScraperArguments.ScraperArgumentType of(String argumentTypeString) {
             try {

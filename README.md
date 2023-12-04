@@ -4,10 +4,6 @@ Solutions to the [Advent of Code](https://adventofcode.com/) problem sets.
 
 ![build](https://github.com/ChrisTopping/advent-of-code/actions/workflows/build.yaml/badge.svg)
 
-![](https://img.shields.io/badge/⭐%20Stars-0-yellow)
-
-![](https://img.shields.io/badge/✅%20Days%20completed-0-red)
-
 ### Results
 
 ```results
