@@ -13,10 +13,6 @@ import java.util.stream.Stream;
 
 public class InputScraper {
 
-    public static void main(String[] args) throws IOException {
-        System.out.println(getInput("2020", "1"));
-    }
-
     public static Stream<String> getInput(String year, String day) throws IOException {
         String session = Dotenv.load().get("SESSION");
 
