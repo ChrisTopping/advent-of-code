@@ -14,7 +14,11 @@ import java.util.stream.Stream;
 public class InputScraper {
 
     public static Stream<String> getInput(String year, String day) throws IOException {
-        String session = Dotenv.load().get("SESSION");
+        String session = Dotenv
+                .configure()
+                .ignoreIfMissing()
+                .load()
+                .get("SESSION");
 
         OkHttpClient client = new OkHttpClient.Builder()
                 .build();
