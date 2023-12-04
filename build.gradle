@@ -106,5 +106,7 @@ task scrape(type: JavaExec) {
     description = "Generate a new solution by scraping adventofcode"
     classpath = sourceSets.main.runtimeClasspath
     mainClass = "com.cpt.adventofcode.ScraperRunner"
+    standardInput = System.in
+    standardOutput = System.out
 }
 
