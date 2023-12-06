@@ -1,1 +1,2 @@
-Puzzle inputs differ by user.  Please log in to get your puzzle input.
+Time:        44     70     70     80
+Distance:   283   1134   1134   1491

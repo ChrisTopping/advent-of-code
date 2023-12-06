@@ -74,8 +74,13 @@ public class SolutionRetriever {
 
     private Predicate<Solution<?>> tagsFilter(SolverArguments solverArguments) {
         return solution -> {
-            Optional<List<String>> part = solverArguments.get(SolverArguments.SolverArgumentType.TAGS);
-            return part.isEmpty() || part.get().stream()
+            List<String> tags = solverArguments.get(SolverArguments.SolverArgumentType.TAGS)
+                    .map(strings -> {
+                        strings.add("!unsolved");
+                        return strings;
+                    }).orElse(List.of("!unsolved"));
+
+            return tags.stream()
                     .anyMatch(s -> containsFilterWithInversion(getTags(solution)).test(s));
         };
     }
