@@ -158,8 +158,8 @@ public class SolverRunner {
     private static String printResult(Boolean verbose, long maxDuration, Result<?> result) {
         double relativeDuration = 1.0 * result.getDuration().toMillis() / maxDuration;
         double relativeDurationLog = relativeDuration == 1 ? 1 : 1.0 / Math.log10(1/relativeDuration);
-        int red = (int) (255 * relativeDurationLog);
-        int green = (int) (255 * (1 - relativeDurationLog));
+        int red = Math.max(Math.min((int) (255 * relativeDurationLog), 255), 0);
+        int green = Math.max(Math.min((int) (255 * (1 - relativeDurationLog)), 255), 0);
         return verbose ? result.getVerbosePrintString() : result.getLaconicPrintString(new AnsiFormat(TEXT_COLOR(red, green, 0)));
     }
 
