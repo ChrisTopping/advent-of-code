@@ -20,7 +20,7 @@ public class InputScraper {
                 .load()
                 .get("SESSION");
 
-        System.out.println("SESSION: " + session);
+//        System.out.println("SESSION: " + session);
 
         OkHttpClient client = new OkHttpClient.Builder()
                 .build();
