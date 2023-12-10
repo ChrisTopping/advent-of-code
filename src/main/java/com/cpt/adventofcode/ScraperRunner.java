@@ -65,7 +65,6 @@ public class ScraperRunner {
         Stream<String> input = InputScraper.getInput(year, day);
 
         String content = input.collect(Collectors.joining("\n"));
-        System.out.println("INPUT: " + content);
         createInput(year, day, content);
     }
 
