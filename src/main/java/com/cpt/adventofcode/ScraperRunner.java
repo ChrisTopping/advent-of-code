@@ -30,9 +30,43 @@ public class ScraperRunner {
 
         if (arguments.has(ScraperArguments.ScraperArgumentType.EXAMPLE)) {
             scrapeExamples(arguments);
+        } else if (arguments.has(ScraperArguments.ScraperArgumentType.INPUT)) {
+            scrapeInput(arguments);
         } else {
             scrapeProblem(arguments);
         }
+    }
+
+    private static void scrapeExamples(ScraperArguments arguments) throws IOException {
+        String year = getYear(arguments);
+        String day = getDay(arguments);
+
+        List<String> exampleInputs = ProblemScraper.getExampleInputs(year, day);
+
+        AnsiFormat codeBlockFormat = new AnsiFormat(TEXT_COLOR(100, 255, 100));
+
+        System.out.println("Code blocks in problem:\n");
+        IntStream.range(0, exampleInputs.size())
+                .mapToObj(i -> String.format("Code block %d:\n\n%s\n", i + 1, colorize(exampleInputs.get(i), codeBlockFormat)))
+                .forEach(System.out::println);
+
+        System.out.print("Code block to be used for example input: ");
+        Scanner scanner = new Scanner(System.in);
+        int exampleIndex = scanner.nextInt();
+
+        System.out.println(String.format("Setting example input to code block %d:\n%s\n", exampleIndex, exampleInputs.get(exampleIndex - 1)));
+
+        createTestInput(year, day, exampleInputs.get(exampleIndex - 1));
+    }
+
+    private static void scrapeInput(ScraperArguments arguments) throws IOException {
+        String year = getYear(arguments);
+        String day = getDay(arguments);
+        Stream<String> input = InputScraper.getInput(year, day);
+
+        String content = input.collect(Collectors.joining("\n"));
+        System.out.println("INPUT: " + content);
+        createInput(year, day, content);
     }
 
     private static void scrapeProblem(ScraperArguments arguments) throws IOException {
@@ -50,28 +84,6 @@ public class ScraperRunner {
                 : "Integer";
 
         generateSolutions(year, day, description, type, input);
-    }
-
-    private static void scrapeExamples(ScraperArguments arguments) throws IOException {
-        String year = getYear(arguments);
-        String day = getDay(arguments);
-
-        List<String> exampleInputs = ProblemScraper.getExampleInputs(year, day);
-
-        AnsiFormat codeBlockFormat = new AnsiFormat(TEXT_COLOR(100, 255, 100));
-
-        System.out.println("Code blocks in problem:\n");
-        IntStream.range(0, exampleInputs.size())
-                .mapToObj(i -> String.format("Code block %d:\n\n%s\n",  i + 1, colorize(exampleInputs.get(i), codeBlockFormat)))
-                .forEach(System.out::println);
-
-        System.out.print("Code block to be used for example input: ");
-        Scanner scanner = new Scanner(System.in);
-        int exampleIndex = scanner.nextInt();
-
-        System.out.println(String.format("Setting example input to code block %d:\n%s\n", exampleIndex, exampleInputs.get(exampleIndex - 1)));
-
-        createTestInput(year, day, exampleInputs.get(exampleIndex - 1));
     }
 
     private static String getYear(ScraperArguments arguments) {
@@ -145,6 +157,13 @@ public class ScraperRunner {
         Path filePath = Paths.get(directoryPath.toString(), "day" + day + ".txt");
         createFile(content, filePath);
     }
+
+    private static void createInput(String year, String day, String content) throws IOException {
+        Path directoryPath = getRelativePath("src", "main", "resources", "year" + year);
+        Path filePath = Paths.get(directoryPath.toString(), "day" + day + ".txt");
+        createFile(content, filePath);
+    }
+
 
     private static void createFile(String content, Path filePath) throws IOException {
         if (!filePath.toFile().exists()) {
