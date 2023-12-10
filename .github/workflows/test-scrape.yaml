@@ -1,0 +1,38 @@
+name: 'Scrape problems'
+
+on:
+  workflow_dispatch:
+    inputs:
+      year:
+        default: '2019'
+      day:
+        default: '1'
+
+
+jobs:
+  test_scrape:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+
+      - name: set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'adopt'
+
+      - name: validate gradle wrapper
+        uses: gradle/wrapper-validation-action@e6e38bacfdf1a337459f332974bb2327a31aaf4b
+
+      - name: assemble
+        uses: gradle/gradle-build-action@67421db6bd0bf253fb4bd25b31ebb98943c375e1
+        with:
+          arguments: assemble
+
+      - name: scrape today's solution
+        shell: bash
+        run: ./gradlew scrape --args="year=${{ inputs.year }} day=${{ inputs.day }} input=true"
+        env:
+          SESSION: ${{ secrets.SESSION }}
