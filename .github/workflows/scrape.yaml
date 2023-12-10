@@ -8,6 +8,7 @@ on:
 jobs:
   build_and_scrape:
     runs-on: ubuntu-latest
+    environment: production
 
     steps:
       - name: checkout
