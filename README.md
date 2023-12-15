@@ -9,63 +9,63 @@ Solutions to the [Advent of Code](https://adventofcode.com/) problem sets.
 ```results
 Year Day Part Name                                          Result          Duration (s)
 ========================================================================================
-2015 1   1    Not Quite Lisp                                74              0.015
-2015 1   2    Not Quite Lisp                                1795            0.010
+2015 1   1    Not Quite Lisp                                74              0.013
+2015 1   2    Not Quite Lisp                                1795            0.008
 2015 2   1    I Was Told There Would Be No Math             1606483         0.018
 2015 2   2    I Was Told There Would Be No Math             3842356         0.009
 2015 3   1    Perfectly Spherical Houses in a Vacuum        2081            0.011
 2015 3   2    Perfectly Spherical Houses in a Vacuum        2341            0.016
 2015 4   1    The Ideal Stocking Stuffer                    117946          0.332
-2015 4   2    The Ideal Stocking Stuffer                    3938038         4.237
+2015 4   2    The Ideal Stocking Stuffer                    3938038         4.242
 2015 5   1    Doesn't He Have Intern-Elves For This?        258             0.012
-2015 5   2    Doesn't He Have Intern-Elves For This?        53              0.006
-2015 6   1    Probably a Fire Hazard                        569999          0.059
-2015 6   2    Probably a Fire Hazard                        17836115        0.091
+2015 5   2    Doesn't He Have Intern-Elves For This?        53              0.007
+2015 6   1    Probably a Fire Hazard                        569999          0.061
+2015 6   2    Probably a Fire Hazard                        17836115        0.063
 ========================================================================================
 2021 1   1    Sonar Sweep                                   1400            0.003
-2021 1   2    Sonar Sweep                                   1429            0.005
+2021 1   2    Sonar Sweep                                   1429            0.006
 2021 2   1    Dive!                                         1580000         0.002
 2021 2   2    Dive!                                         1251263225      0.001
-2021 3   1    Binary Diagnostic                             3374136         0.011
+2021 3   1    Binary Diagnostic                             3374136         0.010
 2021 3   2    Binary Diagnostic                             4432698         0.007
-2021 4   1    Giant Squid                                   31424           0.033
-2021 4   2    Giant Squid                                   23042           0.048
-2021 5   1    Hydrothermal Venture                          6189            0.060
-2021 5   2    Hydrothermal Venture                          19164           0.025
-2021 6   1    Lanternfish                                   387413          0.006
+2021 4   1    Giant Squid                                   31424           0.037
+2021 4   2    Giant Squid                                   23042           0.050
+2021 5   1    Hydrothermal Venture                          6189            0.058
+2021 5   2    Hydrothermal Venture                          19164           0.029
+2021 6   1    Lanternfish                                   387413          0.004
 2021 6   2    Lanternfish                                   1738377086345   0.003
-2021 7   1    The Treachery of Whales                       345197          0.005
-2021 7   2    The Treachery of Whales                       96361630        0.004
+2021 7   1    The Treachery of Whales                       345197          0.004
+2021 7   2    The Treachery of Whales                       96361630        0.003
 2021 8   1    Seven Segment Search                          272             0.008
-2021 8   2    Seven Segment Search - Frequency              1007675         0.080
-2021 8   2    Seven Segment Search - Frequency Density      1007675         0.014
-2021 8   2    Seven Segment Search - Naive                  1007675         0.057
-2021 9   1    Smoke Basin                                   537             0.009
+2021 8   2    Seven Segment Search - Frequency              1007675         0.049
+2021 8   2    Seven Segment Search - Frequency Density      1007675         0.010
+2021 8   2    Seven Segment Search - Naive                  1007675         0.052
+2021 9   1    Smoke Basin                                   537             0.010
 2021 9   2    Smoke Basin - Set                             1142757         0.057
 2021 9   2    Smoke Basin - Counting                        1142757         0.004
 2021 10  1    Syntax Scoring                                311895          0.006
-2021 10  2    Syntax Scoring                                2904180541      0.010
-2021 11  1    Dumbo Octopus                                 1655            0.005
+2021 10  2    Syntax Scoring                                2904180541      0.007
+2021 11  1    Dumbo Octopus                                 1655            0.003
 2021 11  2    Dumbo Octopus                                 337             0.008
 ========================================================================================
-2022 1   1    Calorie Counter                               66306           0.010
+2022 1   1    Calorie Counter                               66306           0.011
 2022 1   2    Calorie Counter                               195292          0.001
-2022 2   1    Rock Paper Scissors                           9759            0.011
-2022 2   2    Rock Paper Scissors                           12429           0.007
+2022 2   1    Rock Paper Scissors                           9759            0.014
+2022 2   2    Rock Paper Scissors                           12429           0.005
 2022 3   1    Rucksack Reorganization                       7980            0.008
 2022 3   2    Rucksack Reorganization                       2881            0.009
 2022 4   1    Camp Cleanup                                  582             0.002
 2022 4   2    Camp Cleanup                                  893             0.001
-2022 5   1    Supply Stacks                                 TDCHVHJTG       0.017
+2022 5   1    Supply Stacks                                 TDCHVHJTG       0.014
 2022 5   2    Supply Stacks                                 NGCMPJLHV       0.006
-2022 6   1    Tuning Trouble                                1578            0.003
+2022 6   1    Tuning Trouble                                1578            0.004
 2022 6   2    Tuning Trouble                                2178            0.002
 2022 7   1    No Space Left On Device                       1084134         0.019
-2022 7   2    No Space Left On Device                       6183184         0.009
-2022 8   1    Treetop Tree House                            1543            0.099
-2022 8   2    Treetop Tree House                            595080          0.055
-2022 9   1    Rope Bridge                                   6057            0.022
-2022 9   2    Rope Bridge                                   2514            0.033
+2022 7   2    No Space Left On Device                       6183184         0.008
+2022 8   1    Treetop Tree House                            1543            0.075
+2022 8   2    Treetop Tree House                            595080          0.064
+2022 9   1    Rope Bridge                                   6057            0.020
+2022 9   2    Rope Bridge                                   2514            0.028
 2022 10  1    Cathode-Ray Tube                              11960           0.001
 2022 10  2    Cathode-Ray Tube                              
 ####...##..##..####.###...##..#....#..#.
@@ -75,24 +75,24 @@ Year Day Part Name                                          Result          Dura
 #....#..#.#..#.#....#....#..#.#....#..#.
 ####..##...##..#....#.....###.####.#..#. 0.001
 ========================================================================================
-2023 1   1    Trebuchet?!                                   54940           0.020
-2023 1   2    Trebuchet?!                                   54208           0.019
+2023 1   1    Trebuchet?!                                   54940           0.019
+2023 1   2    Trebuchet?!                                   54208           0.018
 2023 2   1    Cube Conundrum                                2162            0.011
-2023 2   2    Cube Conundrum                                72513           0.006
-2023 3   1    Gear Ratios                                   525119          0.051
-2023 3   2    Gear Ratios                                   76504829        0.035
+2023 2   2    Cube Conundrum                                72513           0.005
+2023 3   1    Gear Ratios                                   525119          0.059
+2023 3   2    Gear Ratios                                   76504829        0.031
 2023 4   1    Scratchcards                                  23235           0.014
-2023 4   2    Scratchcards                                  5920640         0.014
+2023 4   2    Scratchcards                                  5920640         0.010
 2023 6   1    Wait For It                                   219849          0.001
 2023 6   2    Wait For It                                   29432455        0.000
-2023 7   1    Camel Cards                                   246424613       0.053
-2023 8   1    Haunted Wasteland                             13019           0.014
-2023 8   2    Haunted Wasteland                             13524038372771  0.048
-2023 9   1    Mirage Maintenance                            1934898178      0.015
-2023 9   2    Mirage Maintenance                            1129            0.014
+2023 7   1    Camel Cards                                   246424613       0.052
+2023 8   1    Haunted Wasteland                             13019           0.018
+2023 8   2    Haunted Wasteland                             13524038372771  0.053
+2023 9   1    Mirage Maintenance                            1934898178      0.010
+2023 9   2    Mirage Maintenance                            1129            0.009
 ========================================================================================
 
-Solved 72 solutions with a total duration: 5.918 seconds.
+Solved 72 solutions with a total duration: 5.826 seconds.
 ```
 ---
 
