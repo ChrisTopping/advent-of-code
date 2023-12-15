@@ -54,7 +54,7 @@ public class ScraperRunner {
         Scanner scanner = new Scanner(System.in);
         int exampleIndex = scanner.nextInt();
 
-        System.out.println(String.format("Setting example input to code block %d:\n%s\n", exampleIndex, exampleInputs.get(exampleIndex - 1)));
+        System.out.printf("Setting example input to code block %d:\n%s\n%n", exampleIndex, exampleInputs.get(exampleIndex - 1));
 
         createTestInput(year, day, exampleInputs.get(exampleIndex - 1));
     }
@@ -136,7 +136,7 @@ public class ScraperRunner {
                 .put(PART, "1")
                 .put(DESCRIPTION, description)
                 .put(LINK, String.format("https://adventofcode.com/%s/day/%s", year, day))
-                .put(TAGS, "")
+                .put(TAGS, "unsolved")
                 .put(RESPONSE_TYPE, type)
                 .put(TEST_INPUT, "")
                 .put(TEST_RESPONSE, testResponse)
