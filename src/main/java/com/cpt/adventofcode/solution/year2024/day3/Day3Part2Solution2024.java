@@ -6,7 +6,6 @@ import com.cpt.adventofcode.solution.Solution;
 import com.google.common.collect.Streams;
 
 import java.util.Map;
-import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
