@@ -45,11 +45,28 @@ public class Strings {
         Matcher matcher = pattern.matcher(input);
         matcher.find();
 
-        itemMatcher.typeMap.entrySet().forEach(entry -> {
-            String result = matcher.group(entry.getKey());
-            Object value = result == null ? entry.getValue().getDefaultValue() : entry.getValue().cast(result);
-            results.put(entry.getKey(), value);
+        itemMatcher.typeMap.forEach((key, value1) -> {
+            String result = matcher.group(key);
+            Object value = result == null ? value1.getDefaultValue() : value1.cast(result);
+            results.put(key, value);
         });
+
+        return results;
+    }
+
+    public static Map<String, List<Object>> parseAll(String input, ItemMatcher itemMatcher) {
+        Map<String, List<Object>> results = new HashMap<>();
+        Pattern pattern = Pattern.compile(itemMatcher.pattern);
+        Matcher matcher = pattern.matcher(input);
+        while(matcher.find()) {
+            itemMatcher.typeMap.forEach((key, value1) -> {
+                String result = matcher.group(key);
+                Object value = result == null ? value1.getDefaultValue() : value1.cast(result);
+                List<Object> previous = results.getOrDefault(key, new ArrayList<>());
+                previous.add(value);
+                results.put(key, previous);
+            });
+        }
 
         return results;
     }
