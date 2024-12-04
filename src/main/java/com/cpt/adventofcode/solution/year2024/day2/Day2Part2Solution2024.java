@@ -13,8 +13,7 @@ import java.util.stream.Stream;
 
 @AdventOfCodeSolution(year = 2024, day = 2, part = 2,
         description = "Red-Nosed Reports",
-        link = "https://adventofcode.com/2024/day/2#part2",
-        tags = "unsolved"
+        link = "https://adventofcode.com/2024/day/2#part2"
 )
 public class Day2Part2Solution2024 implements Solution<Integer> {
 
