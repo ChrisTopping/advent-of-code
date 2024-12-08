@@ -137,5 +137,6 @@ gradle-app.setting
 .env
 .idea
 gradle.properties
+gradle-local.properties
 
 # End of https://www.toptal.com/developers/gitignore/api/java,gradle,intellij,git

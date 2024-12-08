@@ -12,6 +12,13 @@ targetCompatibility = "17"
 
 repositories {
     mavenCentral()
+    maven {
+        url = 'https://maven.pkg.github.com/ChrisTopping/tensor'
+        credentials {
+            username System.getenv("GITHUB_PACKAGES_READ_USERNAME")
+            password System.getenv("GITHUB_PACKAGES_READ_TOKEN")
+        }
+    }
 }
 
 sourceSets {
@@ -33,6 +40,8 @@ configurations {
 }
 
 dependencies {
+    implementation group: 'dev.christopping', name: 'tensor', version: '1.0'
+
     implementation group: 'org.reflections', name: 'reflections', version: '0.10.2'
     implementation 'org.projectlombok:lombok:1.18.26'
     compileOnly 'org.projectlombok:lombok:1.18.26'
@@ -43,11 +52,6 @@ dependencies {
     implementation group: 'com.squareup.okhttp3', name: 'okhttp', version: '4.10.0'
     implementation group: 'org.jsoup', name: 'jsoup', version: '1.17.1'
     implementation group: 'io.github.cdimascio', name: 'java-dotenv', version: '5.2.2'
-
-
-
-
-
 
     annotationProcessor 'org.projectlombok:lombok:1.18.26'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.2'
