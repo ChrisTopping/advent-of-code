@@ -10,13 +10,18 @@ version '1.0-SNAPSHOT'
 sourceCompatibility = "17"
 targetCompatibility = "17"
 
+ext {
+    PACKAGE_USER = System.getenv("PACKAGES_USER")
+    PACKAGE_TOKEN = System.getenv("PACKAGES_TOKEN")
+}
+
 repositories {
     mavenCentral()
     maven {
         url = 'https://maven.pkg.github.com/ChrisTopping/tensor'
         credentials {
-            username "chris.p.topping@gmail.com"
-            password System.getenv("PACKAGES_TOKEN")
+            username PACKAGES_USER
+            password PACKAGES_TOKEN
         }
     }
 }
