@@ -15,7 +15,7 @@ repositories {
     maven {
         url = 'https://maven.pkg.github.com/ChrisTopping/tensor'
         credentials {
-            username System.getenv("GITHUB_ACTOR")
+            username "chris.p.topping@gmail.com"
             password System.getenv("PACKAGES_TOKEN")
         }
     }
