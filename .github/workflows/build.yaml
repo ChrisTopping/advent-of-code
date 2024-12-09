@@ -31,6 +31,9 @@ jobs:
       - name: Set env
         run: echo "PACKAGES_TOKEN=$(echo ${{ secrets.PACKAGES_TOKEN}})" >> PACKAGES_TOKEN
 
+      - name: Set env
+        run: echo "PACKAGES_USER=$(echo ${{ secrets.PACKAGES_USER}})" >> PACKAGES_USER
+
       - name: test
         uses: gradle/gradle-build-action@67421db6bd0bf253fb4bd25b31ebb98943c375e1
         with:
