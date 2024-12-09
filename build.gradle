@@ -15,8 +15,8 @@ repositories {
     maven {
         url = 'https://maven.pkg.github.com/ChrisTopping/tensor'
         credentials {
-            username System.getenv("GITHUB_PACKAGES_READ_USERNAME")
-            password System.getenv("GITHUB_PACKAGES_READ_TOKEN")
+            username System.getenv("GITHUB_ACTOR")
+            password System.getenv("GITHUB_TOKEN")
         }
     }
 }
@@ -40,7 +40,7 @@ configurations {
 }
 
 dependencies {
-    implementation group: 'dev.christopping', name: 'tensor', version: '1.0'
+    implementation group: 'dev.christopping', name: 'tensor', version: '1.0.5'
 
     implementation group: 'org.reflections', name: 'reflections', version: '0.10.2'
     implementation 'org.projectlombok:lombok:1.18.26'
