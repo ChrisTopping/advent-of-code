@@ -7,12 +7,11 @@ plugins {
 
 group 'com.cpt'
 version '1.0-SNAPSHOT'
-sourceCompatibility = "17"
-targetCompatibility = "17"
 
-ext {
-    PACKAGE_USER = System.getenv("PACKAGES_USER")
-    PACKAGE_TOKEN = System.getenv("PACKAGES_TOKEN")
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(25)
+    }
 }
 
 repositories {
@@ -38,31 +37,37 @@ sourceSets {
 
 configurations {
     compileOnly {
-        extendsFrom annotationProcessor
+        extendsFrom(configurations.annotationProcessor)
     }
-    integrationTestImplementation.extendsFrom testImplementation
-    integrationTestRuntimeOnly.extendsFrom testRuntimeOnly
+    integrationTestImplementation {
+        extendsFrom(configurations.testImplementation)
+    }
+    integrationTestRuntimeOnly {
+        extendsFrom(configurations.testRuntimeOnly)
+    }
 }
 
 dependencies {
     implementation group: 'dev.christopping', name: 'tensor', version: '1.0.5'
 
     implementation group: 'org.reflections', name: 'reflections', version: '0.10.2'
-    implementation 'org.projectlombok:lombok:1.18.26'
-    compileOnly 'org.projectlombok:lombok:1.18.26'
-    implementation group: 'com.google.guava', name: 'guava', version: '31.0.1-jre'
+    implementation 'org.projectlombok:lombok:1.18.40'
+    compileOnly 'org.projectlombok:lombok:1.18.40'
+    implementation group: 'com.google.guava', name: 'guava', version: '33.4.8-jre'
     implementation group: 'com.diogonunes', name: 'JColor', version: '5.2.0'
     implementation group: 'org.slf4j', name: 'slf4j-api', version: '1.8.0-beta4'
     implementation group: 'org.slf4j', name: 'slf4j-nop', version: '1.8.0-beta4'
-    implementation group: 'com.squareup.okhttp3', name: 'okhttp', version: '4.10.0'
+    implementation group: 'com.squareup.okhttp3', name: 'okhttp', version: '5.1.0'
     implementation group: 'org.jsoup', name: 'jsoup', version: '1.17.1'
     implementation group: 'io.github.cdimascio', name: 'java-dotenv', version: '5.2.2'
 
-    annotationProcessor 'org.projectlombok:lombok:1.18.26'
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.2'
-    testCompileOnly 'org.projectlombok:lombok:1.18.26'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.2'
+    annotationProcessor 'org.projectlombok:lombok:1.18.40'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.13.4'
+    testCompileOnly 'org.projectlombok:lombok:1.18.40'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.13.4'
     testImplementation group: 'org.assertj', name: 'assertj-core', version: '3.21.0'
+    testImplementation 'org.junit.platform:junit-platform-launcher:1.9.3'
+
 
 }
 
@@ -99,23 +104,23 @@ check.dependsOn integrationTest
 application {
     mainClass = 'com.cpt.adventofcode.SolverRunner'
     description = 'Advent of Code Solver'
+    applicationDefaultJvmArgs = []
 }
 
-task generate(type: JavaExec) {
-    group = "Execution"
-    description = "Generate a new solution"
+tasks.register('generate', JavaExec) {
+    group = 'Execution'
+    description = 'Generate a new solution'
     classpath = sourceSets.main.runtimeClasspath
-    mainClass = "com.cpt.adventofcode.GeneratorRunner"
+    mainClass = 'com.cpt.adventofcode.GeneratorRunner'
     standardInput = System.in
     standardOutput = System.out
 }
 
-task scrape(type: JavaExec) {
-    group = "Execution"
-    description = "Generate a new solution by scraping adventofcode"
+tasks.register('scrape', JavaExec) {
+    group = 'Execution'
+    description = 'Generate a new solution by scraping adventofcode'
     classpath = sourceSets.main.runtimeClasspath
-    mainClass = "com.cpt.adventofcode.ScraperRunner"
+    mainClass = 'com.cpt.adventofcode.ScraperRunner'
     standardInput = System.in
     standardOutput = System.out
 }
-
