@@ -10,6 +10,10 @@ jobs:
     runs-on: ubuntu-latest
     environment: production
 
+    env:
+      PACKAGES_USER: ${{ secrets.PACKAGES_USER }}
+      PACKAGES_TOKEN: ${{ secrets.PACKAGES_TOKEN }}
+
     steps:
       - name: checkout
         uses: actions/checkout@v3
