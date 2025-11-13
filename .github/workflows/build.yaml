@@ -12,7 +12,7 @@ jobs:
     environment: production
 
     permissions:
-      contents: read
+      contents: write
       packages: read
 
     env:
@@ -46,7 +46,7 @@ jobs:
         run: ./gradlew run --args="readme=true"
 
       - name: auto-commit README.md changes
-        uses: stefanzweifel/git-auto-commit-action@v4
+        uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: Updating results in README
           file_pattern: README.md

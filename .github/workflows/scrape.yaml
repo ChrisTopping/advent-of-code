@@ -10,6 +10,10 @@ jobs:
     runs-on: ubuntu-latest
     environment: production
 
+    permissions:
+      contents: write
+      packages: read
+
     env:
       PACKAGES_USER: ${{ secrets.PACKAGES_USER }}
       PACKAGES_TOKEN: ${{ secrets.PACKAGES_TOKEN }}
