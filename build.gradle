@@ -76,14 +76,13 @@ test {
 //    finalizedBy jacocoTestReport
 }
 
-task integrationTest(type: Test) {
+tasks.register('integrationTest', Test) {
     useJUnitPlatform()
     description = 'Run integration tests.'
-    check.dependsOn(integrationTest)
     group = 'verification'
     testClassesDirs = sourceSets.integrationTest.output.classesDirs
     classpath = sourceSets.integrationTest.runtimeClasspath
-    shouldRunAfter test
+    shouldRunAfter(tasks.test)
 }
 
 check.dependsOn integrationTest
