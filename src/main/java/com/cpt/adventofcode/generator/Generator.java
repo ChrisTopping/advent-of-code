@@ -70,13 +70,13 @@ public class Generator {
     }
 
     private void createInput(int year, int day, String content) throws IOException {
-        Path directoryPath = getRelativePath("src", "main", "resources", "year" + year);
+        Path directoryPath = getRelativePath("src", "main", "resources", "input", "year" + year);
         Path filePath = Paths.get(directoryPath.toString(), "day" + day + ".txt");
         createFile(content, filePath);
     }
 
     private void createTestInput(int year, int day, String content) throws IOException {
-        Path directoryPath = getRelativePath("src", "test", "resources", "year" + year);
+        Path directoryPath = getRelativePath("src", "test", "resources", "input", "year" + year);
         Path filePath = Paths.get(directoryPath.toString(), "day" + day + ".txt");
         createFile(content, filePath);
     }

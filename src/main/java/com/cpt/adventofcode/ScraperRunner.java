@@ -108,7 +108,7 @@ public class ScraperRunner {
     }
 
     private static void throwIfSolutionExists(String year, String day) {
-        if (getRelativePath("src", "main", "resources", "year" + year, "day" + day + ".txt").toFile().exists()) {
+        if (getRelativePath("src", "main", "resources", "input", "year" + year, "day" + day + ".txt").toFile().exists()) {
             throw new RuntimeException(String.format("Cannot generate solution for year %s day %s as solution already exists", year, day));
         }
     }
