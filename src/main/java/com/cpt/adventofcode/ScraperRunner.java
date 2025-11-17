@@ -152,13 +152,13 @@ public class ScraperRunner {
     }
 
     private static void createTestInput(String year, String day, String content) throws IOException {
-        Path directoryPath = getRelativePath("src", "test", "resources", "year" + year);
+        Path directoryPath = getRelativePath("src", "test", "resources", "input", "year" + year);
         Path filePath = Paths.get(directoryPath.toString(), "day" + day + ".txt");
         createFile(content, filePath);
     }
 
     private static void createInput(String year, String day, String content) throws IOException {
-        Path directoryPath = getRelativePath("src", "main", "resources", "year" + year);
+        Path directoryPath = getRelativePath("src", "main", "resources", "input", "year" + year);
         Path filePath = Paths.get(directoryPath.toString(), "day" + day + ".txt");
         createFile(content, filePath);
     }

@@ -9,7 +9,7 @@ import java.util.stream.Stream;
 public class InputRetriever {
 
     public static Stream<String> retrieveInputStream(int year, int day, Class<?> loadingClass) {
-        String fileName = String.format("/year%d/day%d.txt", year, day);
+        String fileName = String.format("/input/year%d/day%d.txt", year, day);
         try {
             Path path = new File(Objects.requireNonNull(loadingClass.getResource(fileName)).getFile()).toPath();
             return Files.lines(path);
