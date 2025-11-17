@@ -12,7 +12,7 @@ import static com.cpt.adventofcode.arguments.GeneratorArguments.GeneratorArgumen
 
 public class GeneratorRunner {
 
-    public static void main(String[] args) throws IOException {
+    static void main(String[] args) throws IOException {
         GeneratorArguments arguments = new GeneratorArguments();
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
             for (GeneratorArgumentType type : GeneratorArgumentType.values()) {

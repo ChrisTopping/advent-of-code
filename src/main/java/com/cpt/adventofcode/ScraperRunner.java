@@ -25,7 +25,7 @@ import static com.diogonunes.jcolor.Attribute.TEXT_COLOR;
 
 public class ScraperRunner {
 
-    public static void main(String[] args) throws IOException {
+    static void main(String[] args) throws IOException {
         ScraperArguments arguments = new ScraperArguments(args);
 
         if (arguments.has(ScraperArguments.ScraperArgumentType.EXAMPLE)) {
