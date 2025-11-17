@@ -147,7 +147,7 @@ To run a selection of solutions, use the following solverArguments:
 E.g:
 
 ```shell
-./gradlew run --args="year=2020,2021 day=1,2,3 part=2, tags=O(n),algebra latest=2 verbose=true average=100, fastest=true"
+./gradlew run --args="year=2020,2021 day=1,2,3 part=2, tags=O(n),algebra latest=2 verbose=true average=100 fastest=true limit=1 readme=false output=json"
 ```
 
 Tags can be negated using the `!` character, e.g. the following will run all solutions which do not contain

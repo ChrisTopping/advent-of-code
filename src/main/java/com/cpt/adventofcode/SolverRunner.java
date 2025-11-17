@@ -99,13 +99,13 @@ public class SolverRunner {
 
         double averageDuration = solutionResults.stream()
                 .map(Result::getDuration)
-                .mapToLong(Duration::toMillis)
+                .mapToLong(Duration::toNanos)
                 .filter(value -> value != 0)
                 .average()
                 .orElse(0);
 
         Result<?> result = solutionResults.getFirst();
-        result.setDuration(Duration.ofMillis((long) averageDuration));
+        result.setDuration(Duration.ofNanos((long) averageDuration));
         return result;
     }
 
