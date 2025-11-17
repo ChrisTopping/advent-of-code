@@ -2,30 +2,27 @@ package com.cpt.adventofcode;
 
 import com.cpt.adventofcode.annotations.AdventOfCodeSolutionResolver.SolutionInfo;
 import com.cpt.adventofcode.arguments.SolverArguments;
+import com.cpt.adventofcode.output.OutputProviderFactory;
+import com.cpt.adventofcode.output.OutputType;
 import com.cpt.adventofcode.result.Result;
 import com.cpt.adventofcode.solution.Solution;
 import com.cpt.adventofcode.solver.ReadmeUpdater;
 import com.cpt.adventofcode.solver.SolutionRetriever;
 import com.cpt.adventofcode.solver.Solver;
-import com.diogonunes.jcolor.AnsiFormat;
 
 import java.io.IOException;
 import java.text.MessageFormat;
 import java.time.Duration;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.stream.Collectors;
 
 import static com.cpt.adventofcode.arguments.SolverArguments.SolverArgumentType.*;
-import static com.diogonunes.jcolor.Attribute.TEXT_COLOR;
 
 public class SolverRunner {
 
     private static final Solver SOLVER = new Solver();
-    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("s.SSS");
 
-    public static void main(String[] args) throws IOException {
+    static void main(String[] args) throws IOException {
         SolverArguments solverArguments = new SolverArguments(args);
 
         List<Solution<?>> solutions = new SolutionRetriever().retrieveSolutions(solverArguments);
@@ -33,29 +30,15 @@ public class SolverRunner {
 
         List<Result<?>> results = solveSolutions(solutions, getAveragingIterations(solverArguments), isFastest(solverArguments));
 
-        StringBuilder resultsBuilder = new StringBuilder();
-
-        if (!isVerbose(solverArguments)) resultsBuilder.append(Result.getLaconicHeaders()).append("\n");
-
-        results
-                .stream()
-                .collect(Collectors.groupingBy(result -> result.getSolutionInfo().getYear()))
-                .entrySet()
-                .stream()
-                .sorted(Comparator.comparingInt(Map.Entry::getKey))
-                .forEach((entry) -> {
-                    resultsBuilder.append("=".repeat(88)).append("\n");
-                    entry.getValue().forEach(result -> resultsBuilder.append(printResult(isVerbose(solverArguments), getMaxDuration(results), result)).append("\n"));
-                });
-
-        resultsBuilder.append("=".repeat(88)).append("\n");
+        OutputType outputType = getOutputType(solverArguments);
+        String output = OutputProviderFactory.create(outputType).provide(results);
+        System.out.println(output);
 
         Duration totalDuration = getTotalDuration(results);
 
-        resultsBuilder.append(String.format("%nSolved %d solutions with a total duration: %s seconds.%n", results.size(), FORMATTER.format(totalDuration.addTo(LocalDateTime.MIN))));
-
-        if (shouldUpdateReadme(solverArguments)) ReadmeUpdater.replaceReadmeResults(resultsBuilder.toString());
-        System.out.print(resultsBuilder);
+        if (shouldUpdateReadme(solverArguments)) {
+            ReadmeUpdater.replaceReadmeResults(outputType == OutputType.DEFAULT ? output : OutputProviderFactory.create(OutputType.DEFAULT).provide(results));
+        }
 
         Double limit = getLimit(solverArguments);
         if (null != limit) {
@@ -68,7 +51,6 @@ public class SolverRunner {
             }
         }
     }
-
 
     private static boolean isFastest(SolverArguments solverArguments) {
         return solverArguments.get(FASTEST)
@@ -109,13 +91,6 @@ public class SolverRunner {
         }
     }
 
-    private static long getMaxDuration(List<Result<?>> results) {
-        return results.stream()
-                .map(Result::getDuration)
-                .mapToLong(Duration::toMillis)
-                .max().orElse(0);
-    }
-
     private static Result<?> solveSolution(Solution<?> solution, Integer averagingIterations) {
         List<Result<?>> solutionResults = new ArrayList<>();
         for (int iteration = 0; iteration < averagingIterations; iteration++) {
@@ -141,13 +116,6 @@ public class SolverRunner {
                 .compare(left.getSolutionInfo(), right.getSolutionInfo());
     }
 
-    private static Boolean isVerbose(SolverArguments solverArguments) {
-        return solverArguments.get(VERBOSE)
-                .map(strings -> strings.get(0))
-                .map(Boolean::parseBoolean)
-                .orElse(false);
-    }
-
     private static Boolean shouldUpdateReadme(SolverArguments solverArguments) {
         return solverArguments.get(README)
                 .map(strings -> strings.get(0))
@@ -155,19 +123,18 @@ public class SolverRunner {
                 .orElse(false);
     }
 
-    private static String printResult(Boolean verbose, long maxDuration, Result<?> result) {
-        double relativeDuration = 1.0 * result.getDuration().toMillis() / maxDuration;
-        double relativeDurationLog = relativeDuration == 1 ? 1 : 1.0 / Math.log10(1/relativeDuration);
-        int red = Math.max(Math.min((int) (255 * relativeDurationLog), 255), 0);
-        int green = Math.max(Math.min((int) (255 * (1 - relativeDurationLog)), 255), 0);
-        return verbose ? result.getVerbosePrintString() : result.getLaconicPrintString(new AnsiFormat(TEXT_COLOR(red, green, 0)));
-    }
-
     private static Duration getTotalDuration(List<Result<?>> results) {
         return results.stream()
                 .map(Result::getDuration)
                 .reduce(Duration::plus)
                 .orElse(Duration.ZERO);
+    }
+
+    private static OutputType getOutputType(SolverArguments solverArguments) {
+        return solverArguments.get(OUTPUT)
+                .map(strings -> strings.get(0))
+                .map(OutputType::fromString)
+                .orElse(OutputType.DEFAULT);
     }
 
 }

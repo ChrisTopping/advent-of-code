@@ -15,7 +15,7 @@ public class SolverArguments {
     public SolverArguments(String[] args) {
         argumentMap = Arrays.stream(args)
                 .map(SolverArgument::new)
-                .collect(Collectors.toMap(SolverArgument::getSolverArgumentType, SolverArgument::getValues, (first, second) -> first));
+                .collect(Collectors.toMap(SolverArgument::getSolverArgumentType, SolverArgument::getValues, (first, _) -> first));
     }
 
     public Optional<List<String>> get(SolverArgumentType solverArgumentType) {
@@ -32,7 +32,8 @@ public class SolverArguments {
         AVERAGE,
         FASTEST,
         LIMIT,
-        README
+        README,
+        OUTPUT
         ;
 
         public static SolverArgumentType of(String argumentTypeString) {
