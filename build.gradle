@@ -5,8 +5,8 @@ plugins {
     id 'application'
 }
 
-group 'com.cpt'
-version '1.0-SNAPSHOT'
+group = 'com.cpt'
+version = '1.0-SNAPSHOT'
 
 java {
     toolchain {
@@ -48,28 +48,26 @@ configurations {
 }
 
 dependencies {
-    implementation group: 'dev.christopping', name: 'tensor', version: '1.0.5'
+    implementation 'dev.christopping:tensor:1.0.5'
 
-    implementation group: 'org.reflections', name: 'reflections', version: '0.10.2'
+    implementation 'org.reflections:reflections:0.10.2'
     implementation 'org.projectlombok:lombok:1.18.40'
     compileOnly 'org.projectlombok:lombok:1.18.40'
-    implementation group: 'com.google.guava', name: 'guava', version: '33.4.8-jre'
-    implementation group: 'com.diogonunes', name: 'JColor', version: '5.2.0'
-    implementation group: 'org.slf4j', name: 'slf4j-api', version: '1.8.0-beta4'
-    implementation group: 'org.slf4j', name: 'slf4j-nop', version: '1.8.0-beta4'
-    implementation group: 'com.squareup.okhttp3', name: 'okhttp', version: '5.3.0'
-    implementation group: 'org.jsoup', name: 'jsoup', version: '1.17.1'
-    implementation group: 'io.github.cdimascio', name: 'java-dotenv', version: '5.2.2'
-    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.20.0'
+    implementation 'com.google.guava:guava:33.4.8-jre'
+    implementation 'com.diogonunes:JColor:5.2.0'
+    implementation 'org.slf4j:slf4j-api:1.8.0-beta4'
+    implementation 'org.slf4j:slf4j-nop:1.8.0-beta4'
+    implementation 'com.squareup.okhttp3:okhttp:5.3.0'
+    implementation 'org.jsoup:jsoup:1.17.1'
+    implementation 'io.github.cdimascio:java-dotenv:5.2.2'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.20.0'
 
     annotationProcessor 'org.projectlombok:lombok:1.18.40'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.13.4'
     testCompileOnly 'org.projectlombok:lombok:1.18.40'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.13.4'
-    testImplementation group: 'org.assertj', name: 'assertj-core', version: '3.21.0'
+    testImplementation 'org.assertj:assertj-core:3.21.0'
     testImplementation 'org.junit.platform:junit-platform-launcher:1.9.3'
-
-
 }
 
 test {
