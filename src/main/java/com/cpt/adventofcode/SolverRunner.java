@@ -54,21 +54,21 @@ public class SolverRunner {
 
     private static boolean isFastest(SolverArguments solverArguments) {
         return solverArguments.get(FASTEST)
-                .map(strings -> strings.get(0))
+                .map(List::getFirst)
                 .map(Boolean::parseBoolean)
                 .orElse(false);
     }
 
     private static Double getLimit(SolverArguments solverArguments) {
         return solverArguments.get(LIMIT)
-                .map(strings -> strings.get(0))
+                .map(List::getFirst)
                 .map(Double::parseDouble)
                 .orElse(null);
     }
 
     private static Integer getAveragingIterations(SolverArguments solverArguments) {
         return solverArguments.get(AVERAGE)
-                .map(strings -> strings.get(0))
+                .map(List::getFirst)
                 .map(Integer::parseInt)
                 .orElse(1);
     }
@@ -104,7 +104,7 @@ public class SolverRunner {
                 .average()
                 .orElse(0);
 
-        Result<?> result = solutionResults.get(0);
+        Result<?> result = solutionResults.getFirst();
         result.setDuration(Duration.ofMillis((long) averageDuration));
         return result;
     }
@@ -118,7 +118,7 @@ public class SolverRunner {
 
     private static Boolean shouldUpdateReadme(SolverArguments solverArguments) {
         return solverArguments.get(README)
-                .map(strings -> strings.get(0))
+                .map(List::getFirst)
                 .map(Boolean::parseBoolean)
                 .orElse(false);
     }
@@ -132,7 +132,7 @@ public class SolverRunner {
 
     private static OutputType getOutputType(SolverArguments solverArguments) {
         return solverArguments.get(OUTPUT)
-                .map(strings -> strings.get(0))
+                .map(List::getFirst)
                 .map(OutputType::fromString)
                 .orElse(OutputType.DEFAULT);
     }
