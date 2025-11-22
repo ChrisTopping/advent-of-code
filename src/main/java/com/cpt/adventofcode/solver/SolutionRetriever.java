@@ -15,7 +15,7 @@ public class SolutionRetriever {
 
     public static List<Solution<?>> retrieveSolutions(SolverArguments arguments) {
         Optional<Long> latestValue = arguments.get(SolverArguments.SolverArgumentType.LATEST)
-                .map(strings -> Long.parseLong(strings.get(0)));
+                .map(strings -> Long.parseLong(strings.getFirst()));
 
         boolean reverse = latestValue.map(value -> value >= 0)
                 .orElse(true);
