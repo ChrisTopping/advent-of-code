@@ -25,7 +25,7 @@ public class SolverRunner {
     static void main(String[] args) throws IOException {
         SolverArguments solverArguments = new SolverArguments(args);
 
-        List<Solution<?>> solutions = new SolutionRetriever().retrieveSolutions(solverArguments);
+        List<Solution<?>> solutions = SolutionRetriever.retrieveSolutions(solverArguments);
         System.out.println(MessageFormat.format("Solving {0} solutions:\n", solutions.size()));
 
         List<Result<?>> results = solveSolutions(solutions, getAveragingIterations(solverArguments), isFastest(solverArguments));
@@ -50,27 +50,6 @@ public class SolverRunner {
                 System.out.printf("Solution time within %s seconds limit", limit);
             }
         }
-    }
-
-    private static boolean isFastest(SolverArguments solverArguments) {
-        return solverArguments.get(FASTEST)
-                .map(List::getFirst)
-                .map(Boolean::parseBoolean)
-                .orElse(false);
-    }
-
-    private static Double getLimit(SolverArguments solverArguments) {
-        return solverArguments.get(LIMIT)
-                .map(List::getFirst)
-                .map(Double::parseDouble)
-                .orElse(null);
-    }
-
-    private static Integer getAveragingIterations(SolverArguments solverArguments) {
-        return solverArguments.get(AVERAGE)
-                .map(List::getFirst)
-                .map(Integer::parseInt)
-                .orElse(1);
     }
 
     private static List<Result<?>> solveSolutions(List<Solution<?>> solutions, int averagingIterations, boolean fastest) {
@@ -116,13 +95,6 @@ public class SolverRunner {
                 .compare(left.getSolutionInfo(), right.getSolutionInfo());
     }
 
-    private static Boolean shouldUpdateReadme(SolverArguments solverArguments) {
-        return solverArguments.get(README)
-                .map(List::getFirst)
-                .map(Boolean::parseBoolean)
-                .orElse(false);
-    }
-
     private static Duration getTotalDuration(List<Result<?>> results) {
         return results.stream()
                 .map(Result::getDuration)
@@ -130,11 +102,30 @@ public class SolverRunner {
                 .orElse(Duration.ZERO);
     }
 
+    private static Boolean shouldUpdateReadme(SolverArguments solverArguments) {
+        return solverArguments.getBoolean(README)
+                .orElse(false);
+    }
+
     private static OutputType getOutputType(SolverArguments solverArguments) {
-        return solverArguments.get(OUTPUT)
-                .map(List::getFirst)
+        return solverArguments.getString(OUTPUT)
                 .map(OutputType::fromString)
                 .orElse(OutputType.DEFAULT);
+    }
+
+    private static boolean isFastest(SolverArguments solverArguments) {
+        return solverArguments.getBoolean(FASTEST)
+                .orElse(false);
+    }
+
+    private static Double getLimit(SolverArguments solverArguments) {
+        return solverArguments.getDouble(LIMIT)
+                .orElse(null);
+    }
+
+    private static Integer getAveragingIterations(SolverArguments solverArguments) {
+        return solverArguments.getInt(AVERAGE)
+                .orElse(1);
     }
 
 }

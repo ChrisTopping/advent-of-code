@@ -20,13 +20,10 @@ public class Generator {
             int year = Integer.parseInt(arguments.get(YEAR));
             int day = Integer.parseInt(arguments.get(DAY));
             int part = Integer.parseInt(arguments.get(PART));
-            String solutionContent = replaceArguments(getResourceContent("solution.txt"), arguments);
-            String solutionTestContent = replaceArguments(getResourceContent("solution-test.txt"), arguments);
-            String solutionIntegrationTestContent = replaceArguments(getResourceContent("solution-integration-test.txt"), arguments);
 
-            createSolutionFile(year, day, part, solutionContent);
-            createTestFile(year, day, part, solutionTestContent);
-            createIntegrationTestFile(year, day, part, solutionIntegrationTestContent);
+            createSolutionFile(year, day, part, replaceArguments(getResourceContent("solution.txt"), arguments));
+            createTestFile(year, day, part, replaceArguments(getResourceContent("solution-test.txt"), arguments));
+            createIntegrationTestFile(year, day, part, replaceArguments(getResourceContent("solution-integration-test.txt"), arguments));
             createInput(year, day, arguments.get(INPUT));
             createTestInput(year, day, arguments.get(TEST_INPUT));
         } catch (IOException e) {

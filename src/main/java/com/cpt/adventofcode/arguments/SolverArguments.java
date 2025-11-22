@@ -22,6 +22,26 @@ public class SolverArguments {
         return Optional.ofNullable(argumentMap.get(solverArgumentType));
     }
 
+    public Optional<String> getString(SolverArgumentType solverArgumentType) {
+        return get(solverArgumentType)
+                .map(List::getFirst);
+    }
+
+    public Optional<Integer> getInt(SolverArgumentType solverArgumentType) {
+        return getString(solverArgumentType)
+                .map(Integer::parseInt);
+    }
+
+    public Optional<Double> getDouble(SolverArgumentType solverArgumentType) {
+        return getString(solverArgumentType)
+                .map(Double::parseDouble);
+    }
+
+    public Optional<Boolean> getBoolean(SolverArgumentType solverArgumentType) {
+        return getString(solverArgumentType)
+                .map(Boolean::parseBoolean);
+    }
+
     public enum SolverArgumentType {
         YEAR,
         DAY,
