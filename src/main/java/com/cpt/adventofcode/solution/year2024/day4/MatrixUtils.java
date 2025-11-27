@@ -26,8 +26,7 @@ public class MatrixUtils {
         Matrix<String> skewed = matrix.computeAndUpdateIndices(function)
                 .toMatrix();
         skewed.set(".", size * 2 - 2,size * 2 - 2);
-        skewed.backfill(".");
-        return skewed;
+        return skewed.backfill(".");
     }
 
     public static Matrix<String> rotate(Matrix<String> matrix) {

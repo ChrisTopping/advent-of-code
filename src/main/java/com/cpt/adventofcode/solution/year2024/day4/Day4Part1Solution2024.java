@@ -6,6 +6,7 @@ import dev.christopping.tensor.Matrix;
 
 import java.util.stream.Stream;
 
+
 @AdventOfCodeSolution(year = 2024, day = 4, part = 1,
         description = "Ceres Search",
         link = "https://adventofcode.com/2024/day/4"
