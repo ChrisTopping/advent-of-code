@@ -3,7 +3,6 @@ package com.cpt.adventofcode.solution.year2024.day4;
 import com.cpt.adventofcode.helpers.Strings;
 import dev.christopping.tensor.Index;
 import dev.christopping.tensor.Matrix;
-import dev.christopping.tensor.Tensor;
 
 import java.util.List;
 import java.util.Map;
