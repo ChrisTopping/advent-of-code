@@ -32,6 +32,11 @@ public class SolverArguments {
                 .map(Integer::parseInt);
     }
 
+    public Optional<Long> getLong(SolverArgumentType solverArgumentType) {
+        return getString(solverArgumentType)
+                .map(Long::parseLong);
+    }
+
     public Optional<Double> getDouble(SolverArgumentType solverArgumentType) {
         return getString(solverArgumentType)
                 .map(Double::parseDouble);
