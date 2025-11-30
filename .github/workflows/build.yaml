@@ -43,7 +43,7 @@ jobs:
           arguments: integrationTest
 
       - name: run all solutions
-        run: ./gradlew run --args="readme=true"
+        run: ./gradlew run --args="readme=true fastest=true"
 
       - name: auto-commit README.md changes
         uses: stefanzweifel/git-auto-commit-action@v5
