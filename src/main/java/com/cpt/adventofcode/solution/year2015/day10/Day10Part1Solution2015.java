@@ -8,8 +8,7 @@ import java.util.stream.Stream;
 
 @AdventOfCodeSolution(year = 2015, day = 10, part = 1,
         description = "Elves Look, Elves Say",
-        link = "https://adventofcode.com/2015/day/10",
-        tags = "unsolved"
+        link = "https://adventofcode.com/2015/day/10"
 )
 public class Day10Part1Solution2015 implements Solution<Integer> {
 
