@@ -9,7 +9,7 @@ public class LookAndSay {
     public static String iterate(String input) {
         List<List<Character>> parts = new ArrayList<>();
         for (int i = 0; i <= input.length() - 1; i++) {
-            if (!parts.isEmpty() && parts.getLast().get(0).equals(input.charAt(i))) {
+            if (!parts.isEmpty() && parts.getLast().getFirst().equals(input.charAt(i))) {
                 parts.getLast().add(input.charAt(i));
             } else {
                 ArrayList<Character> nextPart = new ArrayList<>();
