@@ -6,9 +6,36 @@ import dev.christopping.tensor.Matrix;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.function.Function;
+import java.util.stream.Stream;
 
 public class MatrixUtils {
+
+    public static <T> List<T> getNeighbours(Matrix<T> matrix, Index index) {
+        return Stream.of(
+                safeIndex(index.get(0), index.get(1) - 1),
+                safeIndex(index.get(0), index.get(1) + 1),
+                safeIndex(index.get(0) - 1, index.get(1)),
+                safeIndex(index.get(0) + 1, index.get(1)),
+                safeIndex(index.get(0) - 1, index.get(1) - 1),
+                safeIndex(index.get(0) + 1, index.get(1) + 1),
+                safeIndex(index.get(0) - 1, index.get(1) + 1),
+                safeIndex(index.get(0) + 1, index.get(1) - 1)
+        )
+                .filter(Objects::nonNull)
+                .map(i -> matrix.get(i))
+                .filter(Objects::nonNull)
+                .toList();
+    }
+
+    public static Index safeIndex(long x, long y) {
+        if (x < 0 || y < 0) {
+            return null;
+        } else {
+            return Index.of(x, y);
+        }
+    }
 
     public static Matrix<String> skew(Matrix<String> matrix) {
         long size = matrix.size(0) - 1;
@@ -24,7 +51,7 @@ public class MatrixUtils {
         };
         Matrix<String> skewed = matrix.computeAndUpdateIndices(function)
                 .toMatrix();
-        skewed.set(".", size * 2 - 2,size * 2 - 2);
+        skewed.set(".", size * 2 - 2, size * 2 - 2);
         return skewed.backfill(".");
     }
 
