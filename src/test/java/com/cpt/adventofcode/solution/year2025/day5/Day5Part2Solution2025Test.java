@@ -5,13 +5,13 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 @DisplayName("Day 5 Part 2")
-class Day5Part2Solution2025Test extends BaseTest<Integer> {
+class Day5Part2Solution2025Test extends BaseTest<Long> {
 
     @Test
-    @DisplayName("Given test input: should return 0")
-    void givenTestInput_ShouldReturn0() {
+    @DisplayName("Given test input: should return 14")
+    void givenTestInput_ShouldReturn14() {
         Day5Part2Solution2025 solution = new Day5Part2Solution2025();
-        assertSolutionIsCorrect(solution, 0);
+        assertSolutionIsCorrect(solution, 14L);
     }
 
 }
