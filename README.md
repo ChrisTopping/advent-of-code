@@ -9,76 +9,76 @@ Solutions to the [Advent of Code](https://adventofcode.com/) problem sets.
 ```results
 Year Day Part Name                                          Result          Duration (s)
 ========================================================================================
-2015 1   1    Not Quite Lisp                                74              0.009
+2015 1   1    Not Quite Lisp                                74              0.014
 2015 1   2    Not Quite Lisp                                1795            0.009
-2015 2   1    I Was Told There Would Be No Math             1606483         0.017
+2015 2   1    I Was Told There Would Be No Math             1606483         0.016
 2015 2   2    I Was Told There Would Be No Math             3842356         0.009
-2015 3   1    Perfectly Spherical Houses in a Vacuum        2081            0.010
-2015 3   2    Perfectly Spherical Houses in a Vacuum        2341            0.017
-2015 4   1    The Ideal Stocking Stuffer                    117946          0.227
-2015 4   2    The Ideal Stocking Stuffer                    3938038         2.720
+2015 3   1    Perfectly Spherical Houses in a Vacuum        2081            0.011
+2015 3   2    Perfectly Spherical Houses in a Vacuum        2341            0.015
+2015 4   1    The Ideal Stocking Stuffer                    117946          0.233
+2015 4   2    The Ideal Stocking Stuffer                    3938038         2.737
 2015 5   1    Doesn't He Have Intern-Elves For This?        258             0.016
-2015 5   2    Doesn't He Have Intern-Elves For This?        53              0.021
-2015 6   1    Probably a Fire Hazard                        569999          0.045
-2015 6   2    Probably a Fire Hazard                        17836115        0.045
-2015 7   1    Some Assembly Required                        3176            0.010
-2015 7   2    Some Assembly Required                        14710           0.005
+2015 5   2    Doesn't He Have Intern-Elves For This?        53              0.012
+2015 6   1    Probably a Fire Hazard                        569999          0.050
+2015 6   2    Probably a Fire Hazard                        17836115        0.046
+2015 7   1    Some Assembly Required                        3176            0.012
+2015 7   2    Some Assembly Required                        14710           0.006
 2015 8   1    Matchsticks                                   1333            0.008
-2015 8   2    Matchsticks                                   2046            0.007
-2015 9   1    All in a Single Night                         141             0.105
-2015 9   2    All in a Single Night                         736             0.055
-2015 10  1    Elves Look, Elves Say                         252594          0.167
-2015 10  2    Elves Look, Elves Say                         3579328         1.997
-2015 11  1    Corporate Policy                              hxbxxyzz        0.016
-2015 11  2    Corporate Policy                              hxcaabcc        0.057
-2015 12  1    JSAbacusFramework.io                          191164          0.004
-2015 12  2    JSAbacusFramework.io                          87842           0.163
-2015 13  1    Knights of the Dinner Table                   618             0.189
-2015 13  2    Knights of the Dinner Table                   601             1.051
+2015 8   2    Matchsticks                                   2046            0.006
+2015 9   1    All in a Single Night                         141             0.104
+2015 9   2    All in a Single Night                         736             0.057
+2015 10  1    Elves Look, Elves Say                         252594          0.188
+2015 10  2    Elves Look, Elves Say                         3579328         2.132
+2015 11  1    Corporate Policy                              hxbxxyzz        0.012
+2015 11  2    Corporate Policy                              hxcaabcc        0.056
+2015 12  1    JSAbacusFramework.io                          191164          0.003
+2015 12  2    JSAbacusFramework.io                          87842           0.168
+2015 13  1    Knights of the Dinner Table                   618             0.195
+2015 13  2    Knights of the Dinner Table                   601             1.079
 2015 14  1    Reindeer Olympics                             2696            0.001
-2015 14  2    Reindeer Olympics                             1084            0.009
+2015 14  2    Reindeer Olympics                             1084            0.010
 ========================================================================================
 2021 1   1    Sonar Sweep                                   1400            0.004
 2021 1   2    Sonar Sweep                                   1429            0.006
 2021 2   1    Dive!                                         1580000         0.002
-2021 2   2    Dive!                                         1251263225      0.001
+2021 2   2    Dive!                                         1251263225      0.002
 2021 3   1    Binary Diagnostic                             3374136         0.011
 2021 3   2    Binary Diagnostic                             4432698         0.007
-2021 4   1    Giant Squid                                   31424           0.034
-2021 4   2    Giant Squid                                   23042           0.068
-2021 5   1    Hydrothermal Venture                          6189            0.071
-2021 5   2    Hydrothermal Venture                          19164           0.035
+2021 4   1    Giant Squid                                   31424           0.039
+2021 4   2    Giant Squid                                   23042           0.040
+2021 5   1    Hydrothermal Venture                          6189            0.056
+2021 5   2    Hydrothermal Venture                          19164           0.025
 2021 6   1    Lanternfish                                   387413          0.003
 2021 6   2    Lanternfish                                   1738377086345   0.001
-2021 7   1    The Treachery of Whales                       345197          0.005
+2021 7   1    The Treachery of Whales                       345197          0.004
 2021 7   2    The Treachery of Whales                       96361630        0.003
-2021 8   1    Seven Segment Search                          272             0.004
+2021 8   1    Seven Segment Search                          272             0.003
 2021 8   2    Seven Segment Search - Frequency Density      1007675         0.012
-2021 9   1    Smoke Basin                                   537             0.009
+2021 9   1    Smoke Basin                                   537             0.008
 2021 9   2    Smoke Basin - Counting                        1142757         0.005
 2021 10  1    Syntax Scoring                                311895          0.005
-2021 10  2    Syntax Scoring                                2904180541      0.008
+2021 10  2    Syntax Scoring                                2904180541      0.006
 2021 11  1    Dumbo Octopus                                 1655            0.002
-2021 11  2    Dumbo Octopus                                 337             0.005
+2021 11  2    Dumbo Octopus                                 337             0.006
 ========================================================================================
 2022 1   1    Calorie Counter                               66306           0.008
-2022 1   2    Calorie Counter                               195292          0.001
-2022 2   1    Rock Paper Scissors                           9759            0.008
+2022 1   2    Calorie Counter                               195292          0.002
+2022 2   1    Rock Paper Scissors                           9759            0.007
 2022 2   2    Rock Paper Scissors                           12429           0.006
 2022 3   1    Rucksack Reorganization                       7980            0.005
-2022 3   2    Rucksack Reorganization                       2881            0.008
+2022 3   2    Rucksack Reorganization                       2881            0.007
 2022 4   1    Camp Cleanup                                  582             0.002
 2022 4   2    Camp Cleanup                                  893             0.001
 2022 5   1    Supply Stacks                                 TDCHVHJTG       0.007
 2022 5   2    Supply Stacks                                 NGCMPJLHV       0.002
 2022 6   1    Tuning Trouble                                1578            0.002
-2022 6   2    Tuning Trouble                                2178            0.003
+2022 6   2    Tuning Trouble                                2178            0.001
 2022 7   1    No Space Left On Device                       1084134         0.010
 2022 7   2    No Space Left On Device                       6183184         0.005
-2022 8   1    Treetop Tree House                            1543            0.076
-2022 8   2    Treetop Tree House                            595080          0.062
-2022 9   1    Rope Bridge                                   6057            0.020
-2022 9   2    Rope Bridge                                   2514            0.033
+2022 8   1    Treetop Tree House                            1543            0.064
+2022 8   2    Treetop Tree House                            595080          0.033
+2022 9   1    Rope Bridge                                   6057            0.017
+2022 9   2    Rope Bridge                                   2514            0.018
 2022 10  1    Cathode-Ray Tube                              11960           0.000
 2022 10  2    Cathode-Ray Tube                              
 ####...##..##..####.###...##..#....#..#.
@@ -88,44 +88,46 @@ Year Day Part Name                                          Result          Dura
 #....#..#.#..#.#....#....#..#.#....#..#.
 ####..##...##..#....#.....###.####.#..#. 0.000
 ========================================================================================
-2023 1   1    Trebuchet?!                                   54940           0.007
+2023 1   1    Trebuchet?!                                   54940           0.008
 2023 1   2    Trebuchet?!                                   54208           0.013
 2023 2   1    Cube Conundrum                                2162            0.010
-2023 2   2    Cube Conundrum                                72513           0.006
-2023 3   1    Gear Ratios                                   525119          0.051
-2023 3   2    Gear Ratios                                   76504829        0.020
-2023 4   1    Scratchcards                                  23235           0.011
-2023 4   2    Scratchcards                                  5920640         0.010
-2023 6   1    Wait For It                                   219849          0.000
+2023 2   2    Cube Conundrum                                72513           0.007
+2023 3   1    Gear Ratios                                   525119          0.032
+2023 3   2    Gear Ratios                                   76504829        0.021
+2023 4   1    Scratchcards                                  23235           0.010
+2023 4   2    Scratchcards                                  5920640         0.008
+2023 6   1    Wait For It                                   219849          0.001
 2023 6   2    Wait For It                                   29432455        0.000
-2023 7   1    Camel Cards                                   246424613       0.052
-2023 8   1    Haunted Wasteland                             13019           0.015
-2023 8   2    Haunted Wasteland                             13524038372771  0.043
-2023 9   1    Mirage Maintenance                            1934898178      0.010
-2023 9   2    Mirage Maintenance                            1129            0.009
+2023 7   1    Camel Cards                                   246424613       0.037
+2023 8   1    Haunted Wasteland                             13019           0.013
+2023 8   2    Haunted Wasteland                             13524038372771  0.030
+2023 9   1    Mirage Maintenance                            1934898178      0.007
+2023 9   2    Mirage Maintenance                            1129            0.006
 ========================================================================================
-2024 1   1    Historian Hysteria                            1530215         0.006
+2024 1   1    Historian Hysteria                            1530215         0.005
 2024 1   2    Historian Hysteria                            26800609        0.003
-2024 2   1    Red-Nosed Reports                             252             0.006
-2024 2   2    Red-Nosed Reports                             324             0.018
-2024 3   1    Mull It Over                                  173731097       0.007
-2024 3   2    Mull It Over                                  93729253        0.008
-2024 4   1    Ceres Search                                  2591            3.035
-2024 4   2    Ceres Search                                  1880            4.724
+2024 2   1    Red-Nosed Reports                             252             0.005
+2024 2   2    Red-Nosed Reports                             324             0.009
+2024 3   1    Mull It Over                                  173731097       0.005
+2024 3   2    Mull It Over                                  93729253        0.004
+2024 4   1    Ceres Search                                  2591            7.085
+2024 4   2    Ceres Search                                  1880            4.816
 ========================================================================================
-2025 1   1    Secret Entrance                               1089            0.001
-2025 1   2    Secret Entrance                               6530            0.001
-2025 2   1    Gift Shop - Less Brute Force                  30608905813     0.008
-2025 2   2    Gift Shop - Brute Force                       31898925685     0.797
-2025 3   1    Lobby                                         17427           0.005
-2025 3   2    Lobby                                         173161749617495 0.010
-2025 4   1    Printing Department                           1549            0.062
-2025 4   2    Printing Department                           8887            1.337
-2025 5   1    Cafeteria                                     511             0.007
+2025 1   1    Secret Entrance                               1089            0.002
+2025 1   2    Secret Entrance                               6530            0.002
+2025 2   1    Gift Shop - Less Brute Force                  30608905813     0.009
+2025 2   2    Gift Shop - Brute Force                       31898925685     0.774
+2025 3   1    Lobby                                         17427           0.004
+2025 3   2    Lobby                                         173161749617495 0.008
+2025 4   1    Printing Department                           1549            0.091
+2025 4   2    Printing Department                           8887            1.508
+2025 5   1    Cafeteria                                     511             0.006
 2025 5   2    Cafeteria                                     350939902751909 0.002
+2025 6   1    Trash Compactor                               3785892992137   0.002
+2025 6   2    Trash Compactor                               7669802156452   0.004
 ========================================================================================
 
-Solved 103 solutions with a total duration: 17.893 seconds.
+Solved 105 solutions with a total duration: 22.252 seconds.
 ```
 ---
 
